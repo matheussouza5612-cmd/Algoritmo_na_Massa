@@ -1,9 +1,22 @@
-.caixa1{
-    width: 5000px;
-    height: 100px;
-    color: black;
-    background-color: black;
+.bodyInicio {
+    width: 100vw;
+    height: 100vh;
+
+    background: repeating-conic-gradient(
+        from 0deg at 50% 50%,
+        #ffe477 0deg 10deg,
+        #ffda5c 10deg 20deg
+    );
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-.img{
-    max-width: 100px;
+
+.bodyInicio img {
+    height: 10vw;
+}
+
+.bodyInicio button {
+    
 }
