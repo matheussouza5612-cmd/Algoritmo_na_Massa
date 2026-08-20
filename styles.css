@@ -8,15 +8,20 @@
         #ffda5c 10deg 20deg
     );
 
-    display: flex;
+    display: grid;
     justify-content: center;
     align-items: center;
+    row-gap: 10px;
+    padding: 10px;
 }
 
 .bodyInicio img {
     height: 10vw;
 }
 
-.bodyInicio button {
-    
+.test{
+    display: grid;
+}
+.test button{
+    margin-top: 15px;
 }
