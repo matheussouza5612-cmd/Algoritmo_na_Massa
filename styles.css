@@ -1,3 +1,4 @@
+/*CSS responsavel pela página de início*/
 .bodyInicio {
     width: 100vw;
     height: 100vh;
@@ -17,11 +18,15 @@
 
 .bodyInicio img {
     height: 10vw;
+    width: 20vw;
 }
 
-.test{
+.conteudoPrimeiraInicio{
     display: grid;
 }
-.test button{
+.conteudoPrimeiraInicio button{
+    padding: 0%;
     margin-top: 15px;
+    height: 10vw;
+    width: 20vw;
 }
