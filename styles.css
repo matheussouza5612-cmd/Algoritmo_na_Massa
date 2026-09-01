@@ -1,0 +1,27 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.cabeca {
+    height: 150px;
+    width: 100%;
+    background-color: #3D1700;
+    display: flex;
+    align-items: center;
+}
+
+#voltar {
+    height: 60px;
+    width: 60px;
+    background-color: #F5D3B0;
+    margin: 60px;
+}
+
+#dicas {
+    height: 60px;
+    width: 60px;
+    background-color: #F18078;
+    margin-left: 1400px
+}
