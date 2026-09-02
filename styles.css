@@ -5,23 +5,27 @@ html, body {
 }
 
 .cabeca {
-    height: 150px;
+    height: 16vh; 
     width: 100%;
     background-color: #3D1700;
+    
     display: flex;
     align-items: center;
+    
+    justify-content: space-between; 
+    
+    padding: 0 60px; 
+    box-sizing: border-box; 
 }
 
 #voltar {
     height: 70px;
     width: 70px;
     background-color: #F5D3B0;
-    margin: 60px;
 }
 
 #dicas {
     height: 70px;
     width: 70px;
     background-color: #F18078;
-    margin-left: 1300px
 }
