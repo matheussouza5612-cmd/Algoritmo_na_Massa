@@ -1,0 +1,48 @@
+bloco 1:
+PAG INICIAL:
+    BOTAO JOGAR:
+    levar na tela de seleção da dificuldade
+    BOTAO TUTORIAL:
+    overlay//gameplay do jogo
+    imagens//background: adicionar as imgs de logo e etc
+    botao de config
+
+bloco 2:
+PAG SELEÇÃO DE DIFICULDADE:
+    CRIAR OS BOTÃO:
+    nivel e começar
+    bloquar niveis não disponiveis (médio e difícil)
+    botão voltar (voltar para pag inicial)
+    bloco 3 (cabeçalho):
+    como funciona sas bomba de medalha??
+    barra de progresso
+    botão de voltar (pag bloco 2)
+    botao com dicas
+    criar um botao de config (bloco 1)
+
+bloco 4:
+PAG RECEBER PEDIDOS:
+    fazer as opções de pedidos
+    mostrar ícone dos pedidos
+
+bloco 5:
+PAG MONTAR PIZZA:
+    bloco spawn ingredientes
+    bloco para posicionar os ingredientes
+    botao verificar
+    bloco da lógica (ordem dos ingredientes)
+    bloco 6:
+    PAG VALIDAÇÃO FINAL:
+    mostrar ingredientes corretos, tempo de forno (correto ou não)
+    botões para tentar dnv e assar mesmo assim
+    
+bloco 7:
+    ???
+
+bloco 8:
+PONTUAÇÃO FINAL:
+    exibir os pontos ganho em cada categoria: seleção ingrediente, tempo de atendimento, temp forno e construção alg
+
+bloco funções:
+    Função para randomizar os pedidos e nomes (bloco 4)
+    função randomizar tempo em q pedido aparece (bloco 4)

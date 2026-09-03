@@ -29,3 +29,27 @@ html, body {
     width: 70px;
     background-color: #F18078;
 }
+
+
+/* essa é a minha parte 👍*/
+.backgroundDosPedido{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15vw auto;
+    height: 40vh;
+    width: 35vw;
+    background-color: gray;
+}
+.pedido {
+    background-color: rgb(98, 0, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.pedido img {
+    max-height: 20px;
+    max-width: 20px;
+}
+/* já não é minha parte 👎*/
