@@ -42,14 +42,34 @@ html, body {
     background-color: gray;
 }
 .pedido {
-    background-color: rgb(98, 0, 0);
+    background-color: white;
+    border-radius: 25px;
     display: flex;
     justify-content: center;
     align-items: center;
-
+    padding: 20px;
 }
 .pedido img {
-    max-height: 20px;
-    max-width: 20px;
+    max-height: 80px;
+    max-width: 80px;
+}
+.cliente {
+    display:flex;
+    align-items: flex-end;
+}
+.cliente h4 {
+    margin: 0 0 0 10px;
+}
+.pedido button {
+    background-color: rgb(222, 0, 0);
+    border: 3px solid rgb(67, 67, 67);
+    border-radius: 100px;
+    font-size: 20px;
+    color: white;
+    -webkit-text-stroke: 0.67px black;
+    padding: 10px 20px;
+    margin-left: 100px;
+    font-family: Impact, Sans-serif;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 /* já não é minha parte 👎*/
