@@ -5,102 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-
-    <style>
-        .retry{ 
-            background-color: #009D4A;
-            font-size: 20px;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 20px;
-            border: 2px solid #153D1F;
-
-            display: inline-flex;
-            width: 220px;
-            height: 55px;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-
-        .continue{
-            background-color: #941E1E;
-            font-size: 20px;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 20px;
-            border: solid 2px #401802;
-
-            display: inline-flex;
-            width: 220px;
-            height: 55px;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-
-        .botoes{
-            display: flex;
-            gap: 20px;
-            align-items: center;
-        }
-
-        .container{
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .blocos{
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            margin-bottom: 25px;
-        }
-
-        .certo{
-            background-color: #A6D095;
-            border: 2px solid #7AAE72;
-            border-radius: 10px;
-            width: 190px;
-            height: 150px;
-
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 5px;
-        }
-
-        .errado{
-            background-color: #FFD4D2;
-            border: 2px solid #E0A396;
-            border-radius: 10px;
-            width: 190px;
-            height: 150px;
-
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding-inline: 5px;
-            padding-top: 10px;
-        }
-
-        .fundo{
-            background-color: #FFE5B6;
-            border: 5px solid #3D1700;
-            border-radius: 10px;
-            padding: 35px;
-        }
-
-        .titulo{
-            color: #FFF6C9;
-        }
-    </style>
-
+    <link rel="stylesheet" href="validacao.css">
 </head>
+
 <body>
     <div class="container">
         <h1 class="titulo">VALIDAÇÃO DA LÓGICA</h1>
@@ -113,12 +20,12 @@
                 </div>
 
                 <div class="errado">
-                    <i class="fa-solid fa-x" style="font-size: 45px; color: red;"></i>
+                    <i class="fa-solid fa-x" style="font-size: 50px; color: red;"></i>
                     <p>Ingredientes (X/X)</p>
                     <p>Tempo de Forno</p>
                 </div>
             </div>
-            
+
             <div class="botoes">
                 <a href="" class="retry">TENTAR DE NOVO</a>
                 <a href="" class="continue">ASSAR MESMO <br> ASSIM</a>
@@ -127,4 +34,5 @@
     </div>
 
 </body>
+
 </html>
