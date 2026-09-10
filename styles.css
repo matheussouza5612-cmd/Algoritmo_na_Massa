@@ -35,6 +35,7 @@ html, body {
 /* essa é a minha parte 👍 (Matheus) */
 .backgroundDosPedido{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     margin: 15vw auto;
@@ -43,12 +44,13 @@ html, body {
     background-color: gray;
 }
 .pedido {
+    width: 90%;
     background-color: white;
     border-radius: 25px;
     display: flex;
-    justify-content: center;
     align-items: center;
     padding: 20px;
+    margin: 15px 0;
 }
 .pedido img {
     max-height: 80px;
@@ -62,6 +64,7 @@ html, body {
     margin: 0 0 0 10px;
 }
 .pedido button {
+    margin-left: auto;
     background-color: rgb(222, 0, 0);
     border: 3px solid rgb(67, 67, 67);
     border-radius: 100px;
@@ -69,7 +72,6 @@ html, body {
     color: white;
     -webkit-text-stroke: 0.67px black;
     padding: 10px 20px;
-    margin-left: 100px;
     font-family: Impact, Sans-serif;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
