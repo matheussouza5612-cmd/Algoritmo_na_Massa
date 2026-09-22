@@ -1,0 +1,60 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    
+    margin: 0;
+    min-height: 100vh;
+    background-image: url("imagens/fundo.webp");
+    background-size: cover;
+    background-position: center;
+     background-repeat: no-repeat;
+}
+
+.tela-inicial {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.logo {
+    width: 250px;
+    height: auto;
+    display: block;
+}
+
+.botoes-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-top: 70px;
+}
+
+.btn-iniciar {
+    background-color: #ca1726;
+}
+
+.btn {
+    width: 215px;
+    padding: 15px 20px;
+    border: 3px solid;
+    border-color: rgb(116, 15, 15);
+    border-radius: 15px;
+    font-size: 25px;
+    font-family: fantasy;
+    cursor: pointer;
+    box-shadow: 0 5px 0 rgba(0, 0, 0, 0.25);
+    transition: all 0.2s ease;
+    text-shadow:
+        2px 2px 0 #8B1E1E,
+        -2px -2px 0 #8B1E1E,
+        2px -2px 0 #8B1E1E,
+        -2px 2px 0 #8B1E1E;
+}
