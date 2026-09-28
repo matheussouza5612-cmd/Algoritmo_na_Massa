@@ -63,7 +63,7 @@ html, body {
 .cliente h4 {
     margin: 0 0 0 10px;
 }
-.pedido button {
+.pedido a {
     margin-left: auto;
     background-color: rgb(222, 0, 0);
     border: 3px solid rgb(67, 67, 67);
@@ -74,5 +74,6 @@ html, body {
     padding: 10px 20px;
     font-family: Impact, Sans-serif;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-decoration: none;
 }
 /* já não é minha parte 👎*/

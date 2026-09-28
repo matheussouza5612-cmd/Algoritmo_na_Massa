@@ -8,17 +8,7 @@
 
 </head>
 <body>
-    <div id="header-dinamico"></div>
-    <script>
-        // Busca o arquivo header.html separado e insere na div acima
-        fetch('header.html')
-          .then(response => response.text())
-          .then(data => {
-            document.getElementById('header-dinamico').innerHTML = data;
-          })
-          .catch(error => console.error('Erro ao carregar o cabeçalho:', error));
-      </script>
-      
+
     <button id="addPedidoTeste">Adicionar pedido teste</button>
     
     <div class="backgroundDosPedido" id="backgroundDosPedidos">
@@ -27,7 +17,7 @@
                 <img src="imagens/Logo.png" alt="imagem de teste">
                 <h4>Nome</h4>
             </div>
-            <button>receber pedido</button>
+            <a href="montagem.html">Receber Pedido</a>
             
         </div>
     </div>
