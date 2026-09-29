@@ -1,58 +1,43 @@
+let arrastando = false;
+
+const blocos = document.querySelectorAll(".blocosArrastaveis");
+
+let blocoAtual;
+let distanciaX;
+let distanciaY;
 
 
+blocos.forEach(function(bloco) {
+
+    bloco.addEventListener("mousedown", function(event) {
+
+        arrastando = true;
+
+        blocoAtual = bloco;
+
+        distanciaX = event.clientX - bloco.getBoundingClientRect().left;
+        distanciaY = event.clientY - bloco.getBoundingClientRect().top;
+
+    });
+
+});
 
 
-// minha parte aqui 😡
+document.addEventListener("mouseup", function() {
 
-// vou usar pra fazer o nome dos clientes
-let nomes = [
-    "Daniel",
-    "Matheus",
-    "Renato"
-]
-let sobrenome = [
-    "Matsuno",
-    "Souza"
-]
-// imagens 
+    arrastando = false;
+    blocoAtual = null;
 
-const botaoAddPedidoTeste = document.getElementById("addPedidoTeste");
-const backgroundDosPedidos = document.getElementById("backgroundDosPedidos");
-function adicionarPedido(pedido) {
+});
 
-    let novoPedido = document.createElement("div");
-    novoPedido.classList.add("pedido");
 
-    let clienteDiv = document.createElement("div");
-    clienteDiv.classList.add("cliente");
+document.addEventListener("mousemove", function(event) {
 
-    let imgDoCliente = document.createElement("img");
-    imgDoCliente.src = pedido.imagem;
-    imgDoCliente.alt = "Foto representando o cliente";
+    if (arrastando) {
 
-    let nomeDoCliente = document.createElement("h4");
-    nomeDoCliente.textContent = pedido.nome;
+        blocoAtual.style.left = event.clientX - distanciaX + "px";
+        blocoAtual.style.top = event.clientY - distanciaY + "px";
 
-    let botaoAceitar = document.createElement("button");
-    botaoAceitar.textContent = "receber pedido";
-
-    clienteDiv.appendChild(imgDoCliente);
-    clienteDiv.appendChild(nomeDoCliente);
-
-    novoPedido.appendChild(clienteDiv);
-    novoPedido.appendChild(botaoAceitar);
-
-    backgroundDosPedidos.appendChild(novoPedido);
-}
-
-botaoAddPedidoTeste.addEventListener("click", function(){
-    let nome = nomes[Math.floor(Math.random() * nomes.length)];
-    let imagem = "imagens/Logo.png"; // Depois é so troca pela img dos personagem
-    let pedido = {
-        nome: nome,
-        imagem: imagem
     }
 
-    adicionarPedido(pedido)
-} )
-// apartir daqui não é minha parte 😒
+});
