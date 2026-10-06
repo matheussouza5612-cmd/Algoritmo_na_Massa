@@ -7,8 +7,6 @@ body {
     background-repeat: no-repeat;
 }
 
-
-/* Tela inteira */
 .tela-inicial {
     min-height: 100vh;
     display: flex;
@@ -17,16 +15,12 @@ body {
     align-items: center;
 }
 
-
-/* Logo */
 .logo {
-    width: 450px;
+    width: 500px;
     height: auto;
     display: block;
 }
 
-
-/* Botões */
 .botoes-menu {
     display: flex;
     flex-direction: column;
@@ -35,15 +29,15 @@ body {
     margin-top: 40px;
 }
 
-
-/* Estilo geral dos botões */
 .btn {
-    width: 215px;
+    width: 320px;
+    height: 90px;
     padding: 15px 20px;
     color: white;
-    border: 3px solid rgb(116, 15, 15);
-    border-radius: 15px;
-    font-size: 25px;
+    background-color: #ca1726;
+    border: 4px solid rgb(116, 15, 15);
+    border-radius: 18px;
+    font-size: 35px;
     font-family: fantasy;
     cursor: pointer;
     box-shadow: 0 5px 0 rgba(0, 0, 0, 0.25);
@@ -55,27 +49,11 @@ body {
         -2px 2px 0 #8B1E1E;
 }
 
-
-/* Botão Jogar */
-.btn-iniciar {
-    background-color: #ca1726;
-}
-
-
-/* Botão Tutorial */
-.btn-tutorial {
-    background-color: #ca1726;
-}
-
-
-/* Quando passa o mouse */
 .btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.25);
 }
 
-
-/* Quando clica */
 .btn:active {
     transform: translateY(3px);
     box-shadow: 0 2px 0 rgba(0, 0, 0, 0.25);

@@ -6,20 +6,51 @@
     <title>Níveis 🍕</title>
     <link rel="stylesheet" href="niveis.css">
 </head>
-<body>
-    <img src="imagens/Logo.png" alt="Algoritmo">
-    <div calss="nivel">
-        <div>
-            <h2>NÍVEL: <span class="facil">Fácil</span></h2>
-            <p>3 clientes</p>
-        </div>
-        <div class="botoes-menu">
-            <button class="btn btn-iniciar"><a href="pedidos.html">JOGAR</a></button>
-        </div>
-    </div>
-   
-    <br>
-    <h4></h4>
 
+<body>
+    <header>
+        <img src="imagens/Logo.png" alt="Algoritmo" class="logo">
+    </header>
+    <main>
+        <section>
+            <div class="nivel">
+                <div>
+                    <h2>NÍVEL: <span class="facil">Fácil</span></h2>
+                    <p>3 clientes</p>
+                </div>
+
+                <div class="botoes-menu">
+                    <button class="btn btn-iniciar">
+                        <a href="pedidos.html">JOGAR</a>
+                    </button>
+                </div>
+            </div>
+   
+            <div class="nivel">
+                <div>
+                    <h2> NÍVEL: <span class="medio">MÉDIO</span></h2>
+                    <P>6 clientes</P>
+                </div>
+                <div class="cadeado">🔒</div>
+                <div class="botoes-menu">
+                    <button class="btn btn-iniciar" disabled>COMEÇAR</button>
+                </div>
+            </div>
+   
+
+            <div class="nivel">
+                <div>
+                    <h2> NÍVEL: <span class="dificil">DIFÍCIL</span></h2>
+                    <P>10 clientes</P>
+                </div>
+                <div class="cadeado">🔒</div>
+                <div class="botoes-menu">
+                    <button class="btn btn-iniciar" disabled>COMEÇAR</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+   
 </body>
 </html>

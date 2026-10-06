@@ -76,4 +76,86 @@ html, body {
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     text-decoration: none;
 }
+
+
+.paginaMontagem .tituloMontagem {
+    text-align: center;
+}
+
+.paginaMontagem .areaMontagem {
+    width: 500px;
+    min-height: 300px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #d3d3d3;
+    border: 3px solid #555;
+    border-radius: 20px;
+}
+
+.paginaMontagem .tituloAreaMontagem {
+    text-align: center;
+}
+
+.paginaMontagem .sequenciaPizza {
+    min-height: 180px;
+    margin-top: 20px;
+    padding: 15px;
+    background-color: white;
+    border: 2px dashed #777;
+    border-radius: 15px;
+}
+
+.paginaMontagem .blocosPizza {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin: 30px auto;
+    width: 600px;
+}
+
+.paginaMontagem .blocoPizza {
+    width: 110px;
+    height: 60px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 3px solid #444;
+    border-radius: 15px;
+
+    font-size: 18px;
+    font-weight: bold;
+
+    cursor: pointer;
+    user-select: none;
+
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+}
+
+.paginaMontagem .massaPizza {
+    background-color: #d9a066;
+}
+
+.paginaMontagem .molhoPizza {
+    background-color: #e53935;
+    color: white;
+}
+
+.paginaMontagem .queijoPizza {
+    background-color: #ffd83d;
+}
+
+.paginaMontagem .pepperoniPizza {
+    background-color: #c62828;
+    color: white;
+}
+
+.paginaMontagem .fornoPizza {
+    background-color: #555;
+    color: white;
+}
+
 /* já não é minha parte 👎*/
