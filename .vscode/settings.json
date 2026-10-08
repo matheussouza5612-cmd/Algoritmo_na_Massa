@@ -1,0 +1,17 @@
+{
+    "files.exclude": {
+        "**/fornos.html": true,
+        "**/header.html": true,
+        "**/blocos.txt": true,
+        "**/niveis.css": true,
+        "**/niveis.html": true,
+        "**/README.md": true,
+        "**/validacao.css": true,
+        "**/validacao.html": true,
+        "**/pontuacao.css": true,
+        "**/pontuacao.html": true,
+        "**/inicial_styles.css": true,
+        "**/index.html": true
+    }
+
+}

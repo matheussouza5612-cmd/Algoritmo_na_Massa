@@ -3,9 +3,16 @@
 // ==========================================
 
 const areaPizza = document.getElementById("areaPizza");
+const pedidoAtual = sessionStorage.getItem("pedidoAtual");
 const blocosPizza = document.querySelectorAll(".blocoPizza");
 const tempoFornoBloco = document.getElementById("tempoFornoBloco");
+if (pedidoAtual) {
 
+    const pedido = JSON.parse(pedidoAtual);
+
+    console.log("Pedido recebido:", pedido);
+
+}
 if (areaPizza) {
 
     let proximoId = 1;

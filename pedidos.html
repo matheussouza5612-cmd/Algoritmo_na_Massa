@@ -10,16 +10,10 @@
 <body>
 
     <button id="addPedidoTeste">Adicionar pedido teste</button>
+    <a href="config.html">ir para pagina de configs</a>
     
     <div class="backgroundDosPedido" id="backgroundDosPedidos">
-        <div class="pedido" id="">
-            <div class="cliente">
-                <img src="imagens/Logo.png" alt="imagem de teste">
-                <h4>Nome</h4>
-            </div>
-            <a href="montagem.html">Receber Pedido</a>
-            
-        </div>
+
     </div>
     
     <script>
@@ -52,8 +46,20 @@
             let nomeDoCliente = document.createElement("h4");
             nomeDoCliente.textContent = pedido.nome;
 
-            let botaoAceitar = document.createElement("button");
+            let botaoAceitar = document.createElement("a");
+
             botaoAceitar.textContent = "receber pedido";
+
+            botaoAceitar.addEventListener("click", function () {
+
+            sessionStorage.setItem(
+                "pedidoAtual",
+                JSON.stringify(pedido)
+            );
+
+            window.location.href = "montagem.html";
+
+            });
 
             clienteDiv.appendChild(imgDoCliente);
             clienteDiv.appendChild(nomeDoCliente);
@@ -64,16 +70,32 @@
             backgroundDosPedidos.appendChild(novoPedido);
         }
 
-        botaoAddPedidoTeste.addEventListener("click", function(){
-            let nome = nomes[Math.floor(Math.random() * nomes.length)];
-            let imagem = "imagens/Logo.png"; // Depois é so troca pela img dos personagem
-            let pedido = {
-                nome: nome,
-                imagem: imagem
-            }
+        botaoAddPedidoTeste.addEventListener("click", function () {
 
-            adicionarPedido(pedido)
-        } )
+        let nome = nomes[Math.floor(Math.random() * nomes.length)];
+
+        let imagem = "imagens/Logo.png";
+
+        let pedido = {
+
+            nome: nome,
+
+            imagem: imagem,
+
+            ingredientes: [
+                "massa",
+                "molho",
+                "queijo",
+                "pepperoni"
+            ],
+
+            tempoForno: "3:00"
+
+        };
+
+        adicionarPedido(pedido);
+
+        });
     </script>
 </body>
 </html>
