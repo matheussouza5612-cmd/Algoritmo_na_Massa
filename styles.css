@@ -179,116 +179,332 @@ html, body {
 }
 
 
-<<<<<<< HEAD
-.paginaMontagem .tituloMontagem {
-    text-align: center;
-}
+/* ==========================================
+   PÁGINA DE MONTAGEM
+   ========================================== */
 
-.paginaMontagem .areaMontagem {
-    width: 500px;
-    min-height: 300px;
-    margin: 30px auto;
-    padding: 20px;
-    background-color: #d3d3d3;
-    border: 3px solid #555;
-    border-radius: 20px;
-}
+   .paginaMontagem {
+    min-height: 100vh;
+    margin: 0;
+    background-color: #8b5a3c;
+    font-family: Arial, sans-serif;
 
-.paginaMontagem .tituloAreaMontagem {
-    text-align: center;
-}
-
-.paginaMontagem .sequenciaPizza {
-    min-height: 180px;
-    margin-top: 20px;
-    padding: 15px;
-    background-color: white;
-    border: 2px dashed #777;
-    border-radius: 15px;
-}
-
-.paginaMontagem .blocosPizza {
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 15px;
-    flex-wrap: wrap;
-    margin: 30px auto;
-    width: 600px;
+    justify-content: center;
+
+    position: relative;
 }
+
+
+/* ==========================================
+   PAINEL DOS INGREDIENTES
+   ========================================== */
+
+.paginaMontagem .painelIngredientes {
+    position: absolute;
+
+    left: 0;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 280px;
+
+    padding: 15px 10px;
+
+    background-color: rgba(220, 220, 220, 0.75);
+
+    border: 1px solid #777;
+    border-radius: 0 15px 15px 0;
+
+    box-sizing: border-box;
+}
+
+
+/* BANDEJA */
+
+.paginaMontagem .bandejaIngredientes {
+    padding: 15px;
+
+    background-color: rgba(210, 170, 195, 0.85);
+
+    border: 1px solid #777;
+    border-radius: 12px;
+}
+
+
+/* ==========================================
+   BLOCOS DOS INGREDIENTES
+   ========================================== */
 
 .paginaMontagem .blocoPizza {
-    width: 110px;
-    height: 60px;
+    width: 180px;
+    height: 40px;
+
+    margin: 7px auto;
 
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 
-    border: 3px solid #444;
-    border-radius: 15px;
+    border-radius: 5px;
+
+    color: white;
+
+    font-size: 20px;
+    font-weight: bold;
+
+    text-shadow: 1px 1px 2px #333;
+
+    cursor: grab;
+
+    user-select: none;
+
+    box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.3);
+}
+
+
+/* CORES */
+
+.paginaMontagem .massaPizza {
+    background-color: #35a95f;
+}
+
+.paginaMontagem .molhoPizza {
+    background-color: #df3b35;
+}
+
+.paginaMontagem .queijoPizza {
+    background-color: #8d3069;
+}
+
+.paginaMontagem .pepperoniPizza {
+    background-color: #8d3069;
+}
+
+
+/* ==========================================
+   TEMPO DE FORNO
+   ========================================== */
+
+.paginaMontagem .tempoForno {
+    width: 210px;
+    height: 55px;
+
+    margin: 15px auto 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    background-color: #16b6df;
+
+    border-radius: 5px;
+
+    color: white;
 
     font-size: 18px;
     font-weight: bold;
 
+    text-shadow: 1px 1px 2px #555;
+
+    cursor: grab;
+}
+
+
+/* ==========================================
+   ÁREA CENTRAL
+   ========================================== */
+
+.paginaMontagem .areaMontagem {
+    width: 510px;
+    height: 480px;
+
+    padding: 12px;
+
+    background-color: #35190e;
+
+    border-radius: 20px;
+
+    box-sizing: border-box;
+
+    position: relative;
+
+    box-shadow: 4px 5px 10px rgba(0, 0, 0, 0.4);
+}
+
+
+.paginaMontagem .areaPizza {
+    width: 100%;
+    height: 100%;
+
+    background-color: #ffe6b5;
+
+    border-radius: 15px;
+
+    box-sizing: border-box;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+
+/* ==========================================
+   BOTÃO VERIFICAR
+   ========================================== */
+
+.paginaMontagem .botaoVerificar {
+    position: absolute;
+
+    left: 50%;
+    bottom: -5px;
+
+    transform: translateX(-50%);
+
+    width: 275px;
+    height: 80px;
+
+    background-color: #df1717;
+
+    border: 4px solid #4b0808;
+
+    border-radius: 50px;
+
+    color: white;
+
+    font-family: Impact, sans-serif;
+
+    font-size: 30px;
+
+    text-shadow: 2px 2px 2px #333;
+
     cursor: pointer;
+
+    box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.4);
+}
+
+
+/* ==========================================
+   PRANCHETA DO PEDIDO
+   ========================================== */
+
+.paginaMontagem .painelPedido {
+    position: absolute;
+
+    right: 20px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 350px;
+    height: 350px;
+
+    background-image: url("imgs/prancheta.png");
+
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    box-sizing: border-box;
+}
+
+
+/* ==========================================
+   RECEITA SOBRE A PRANCHETA
+   ========================================== */
+
+.paginaMontagem .pedidoReceita {
+    position: absolute;
+
+    top: 75px;
+    left: 75px;
+
+    width: 210px;
+
+    background-color: transparent;
+
+    border: none;
+}
+
+
+/* ==========================================
+   ITENS DA RECEITA
+   ========================================== */
+
+.paginaMontagem .itemPedido {
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+
+    padding-left: 10px;
+
+    box-sizing: border-box;
+
+    background-color: #ffe5e5;
+
+    border-bottom: 1px solid #999;
+
+    font-size: 19px;
+    font-weight: bold;
+
+    font-family: "Comic Sans MS", cursive;
+}
+
+
+.paginaMontagem .tempoPedido {
+    border-bottom: none;
+}
+
+
+/* ==========================================
+   BLOCOS JÁ COLOCADOS NA PIZZA
+   ========================================== */
+
+.paginaMontagem .ingredienteMontado {
+    position: absolute;
+
+    width: 180px;
+    height: 40px;
+
+    margin: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 5px;
+
+    color: white;
+
+    font-size: 20px;
+    font-weight: bold;
+
+    text-shadow: 1px 1px 2px #333;
+
+    cursor: grab;
+
     user-select: none;
 
-    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.3);
+
+    z-index: 2;
+}
+.paginaMontagem .tempoForno {
+    touch-action: none;
+    user-select: none;
 }
 
-.paginaMontagem .massaPizza {
-    background-color: #d9a066;
+.paginaMontagem .ingredienteMontado:active {
+    cursor: grabbing;
 }
-
-.paginaMontagem .molhoPizza {
-    background-color: #e53935;
-    color: white;
-}
-
-.paginaMontagem .queijoPizza {
-    background-color: #ffd83d;
-}
-
-.paginaMontagem .pepperoniPizza {
-    background-color: #c62828;
-    color: white;
-}
-
 .paginaMontagem .fornoPizza {
     background-color: #555;
     color: white;
 }
 
-=======
-.backgroundIngredientes {
-    position: relative;
-
-    width: 300px;
-    height: 500px;
-
-    border: 1px solid black;
-    border-radius: 20px;
-
-    background-color: rgba(204, 204, 204, 0.547);
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.blocosArrastaveis {
-    position: absolute;
-
-    margin: 10px;
-    width: 100px;
-    height: 50px;
-
-    background-color: darksalmon;
-}
-
-.blocosArrastaveis:hover {
-    cursor: pointer;
-}
->>>>>>> 621ffde251797d9c390c22ff6b1e3bcec100f8b6
 /* já não é minha parte 👎*/
