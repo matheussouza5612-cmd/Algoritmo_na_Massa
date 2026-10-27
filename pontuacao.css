@@ -1,3 +1,9 @@
+body {
+    background-image: url(imagens/fundo_pizzaria.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 .lado {
   flex: 0 0 auto;
   width: 25%;
