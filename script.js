@@ -11,7 +11,8 @@ const config = {
         }
     ],
     "sobrenomes": [
-        "não tem ainda"
+        "não tem ainda",
+        "tem ainda"
     ],
     "ingredientes": {
         "pepperoni": {
@@ -46,6 +47,7 @@ const config = {
 }
 
 
+
 function formatarTempo(segundos) {
     segundos = Math.max(0, Number(segundos) || 0);
     const minutos = Math.floor(segundos / 60);
@@ -62,62 +64,91 @@ function mostrarErro(mensagem) {
     if (alvo) alvo.textContent = mensagem;
 }
 
+
+
 function iniciarPaginaPedidos() {
     const botao = document.getElementById("addPedidoTeste");
     const area = document.getElementById("backgroundDosPedidos");
+
     if (!botao || !area) return;
 
     botao.addEventListener("click", () => {
+        // Sorteia o cliente e a pizza
         const nomeSorteado = sortear(config.nomes);
         const sobrenomeSorteado = sortear(config.sobrenomes);
         const [pizzaId, pizza] = sortear(Object.entries(config.pizzas));
-        const imagem = String(nomeSorteado.genero).toLowerCase() === "feminino"
-            ? "img/cliente_f.png"
-            : "img/cliente_m.png";
 
+        const imagem = String(nomeSorteado.genero).toLowerCase() === "feminino"
+            ? "imagens/cliente_f.png"
+            : "imagens/cliente_m.png";
+
+        // Mantém todos os dados necessários para a montagem
         const pedido = {
             nome: `${nomeSorteado.nome} ${sobrenomeSorteado}`,
             imagem,
             pizzaId,
             pizzaNome: pizza.nome || pizzaId,
-            ingredientes: pizza.ingredientes.filter(id => config.ingredientes[id]),
+            ingredientes: pizza.ingredientes.filter(
+                id => config.ingredientes[id]
+            ),
             tempoForno: Math.max(0, Number(pizza.tempoForno) || 0)
         };
 
         if (!pedido.ingredientes.length) {
-            mostrarErro(`A pizza "${pedido.pizzaNome}" não possui ingredientes válidos.`);
+            mostrarErro(
+                `A pizza "${pedido.pizzaNome}" não possui ingredientes válidos.`
+            );
             return;
         }
 
+        // Cartão do pedido
         const card = document.createElement("div");
         card.className = "pedido";
+
+        // Imagem e nome do cliente
         const cliente = document.createElement("div");
         cliente.className = "cliente";
+
         const img = document.createElement("img");
         img.src = pedido.imagem;
-        img.alt = "Imagem ilustrativa do cliente";
-        img.onerror = () => { img.style.display = "none"; };
+        img.alt = `Cliente: ${nomeSorteado.nome}`;
+        img.onerror = () => {
+            img.style.display = "none";
+        };
+
         const nome = document.createElement("h4");
         nome.textContent = pedido.nome;
-        const descricao = document.createElement("p");
-        descricao.textContent = `Pedido: ${pedido.pizzaNome}`;
-        const tempo = document.createElement("p");
-        tempo.textContent = `Forno: ${formatarTempo(pedido.tempoForno)}`;
-        const aceitar = document.createElement("button");
-        aceitar.type = "button";
-        aceitar.textContent = "Receber pedido";
-        aceitar.addEventListener("click", () => {
-            sessionStorage.setItem("pedidoAtual", JSON.stringify(pedido));
+
+        cliente.append(img, nome);
+
+        // Botão para receber o pedido
+        const aceitar = document.createElement("a");
+        aceitar.href = "montagem.html";
+        aceitar.textContent = "RECEBER PEDIDO";
+
+        aceitar.addEventListener("click", (evento) => {
+            evento.preventDefault();
+
+            sessionStorage.setItem(
+                "pedidoAtual",
+                JSON.stringify(pedido)
+            );
+
             window.location.href = "montagem.html";
         });
 
-        cliente.append(img, nome);
-        card.append(cliente, descricao, tempo, aceitar);
+        // Adiciona somente o cliente e o botão ao cartão
+        card.append(cliente, aceitar);
         area.appendChild(card);
+
         const status = document.getElementById("mensagemPedidos");
-        if (status) status.textContent = "";
+        if (status) {
+            status.textContent = "";
+        }
     });
 }
+
+
 
 function iniciarPaginaMontagem() {
     const bandeja = document.getElementById("bandejaIngredientes");
