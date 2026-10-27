@@ -1,18 +1,194 @@
 // ==========================================
+// CONFIGURAÇÕES E FLUXO DE PEDIDOS
+// Temporariamente, as configurações ficam aqui no próprio JavaScript.
+// Não é necessário Node.js nem carregar presets/config.json.
+// ==========================================
+const config = {
+    "nomes": [
+        {
+            "nome": "Eu",
+            "genero": "masculino"
+        }
+    ],
+    "sobrenomes": [
+        "não tem ainda"
+    ],
+    "ingredientes": {
+        "pepperoni": {
+            "nome": "Pepperoni",
+            "cor": "#8e2525"
+        },
+        "massa": {
+            "nome": "Massa",
+            "cor": "#f8c891"
+        },
+        "queijo": {
+            "nome": "Queijo",
+            "cor": "#f29d26"
+        },
+        "molho": {
+            "nome": "molho",
+            "cor": "#cb2a2a"
+        }
+    },
+    "pizzas": {
+        "pizza_de_seila": {
+            "nome": "Pizza de seila",
+            "ingredientes": [
+                "pepperoni",
+                "massa",
+                "queijo",
+                "molho"
+            ],
+            "tempoForno": 130
+        }
+    }
+}
+
+
+function formatarTempo(segundos) {
+    segundos = Math.max(0, Number(segundos) || 0);
+    const minutos = Math.floor(segundos / 60);
+    const resto = segundos % 60;
+    return `${minutos}:${String(resto).padStart(2, "0")}`;
+}
+
+function sortear(lista) {
+    return lista[Math.floor(Math.random() * lista.length)];
+}
+
+function mostrarErro(mensagem) {
+    const alvo = document.getElementById("mensagemPedidos") || document.getElementById("pedidoReceita");
+    if (alvo) alvo.textContent = mensagem;
+}
+
+function iniciarPaginaPedidos() {
+    const botao = document.getElementById("addPedidoTeste");
+    const area = document.getElementById("backgroundDosPedidos");
+    if (!botao || !area) return;
+
+    botao.addEventListener("click", () => {
+        const nomeSorteado = sortear(config.nomes);
+        const sobrenomeSorteado = sortear(config.sobrenomes);
+        const [pizzaId, pizza] = sortear(Object.entries(config.pizzas));
+        const imagem = String(nomeSorteado.genero).toLowerCase() === "feminino"
+            ? "img/cliente_f.png"
+            : "img/cliente_m.png";
+
+        const pedido = {
+            nome: `${nomeSorteado.nome} ${sobrenomeSorteado}`,
+            imagem,
+            pizzaId,
+            pizzaNome: pizza.nome || pizzaId,
+            ingredientes: pizza.ingredientes.filter(id => config.ingredientes[id]),
+            tempoForno: Math.max(0, Number(pizza.tempoForno) || 0)
+        };
+
+        if (!pedido.ingredientes.length) {
+            mostrarErro(`A pizza "${pedido.pizzaNome}" não possui ingredientes válidos.`);
+            return;
+        }
+
+        const card = document.createElement("div");
+        card.className = "pedido";
+        const cliente = document.createElement("div");
+        cliente.className = "cliente";
+        const img = document.createElement("img");
+        img.src = pedido.imagem;
+        img.alt = "Imagem ilustrativa do cliente";
+        img.onerror = () => { img.style.display = "none"; };
+        const nome = document.createElement("h4");
+        nome.textContent = pedido.nome;
+        const descricao = document.createElement("p");
+        descricao.textContent = `Pedido: ${pedido.pizzaNome}`;
+        const tempo = document.createElement("p");
+        tempo.textContent = `Forno: ${formatarTempo(pedido.tempoForno)}`;
+        const aceitar = document.createElement("button");
+        aceitar.type = "button";
+        aceitar.textContent = "Receber pedido";
+        aceitar.addEventListener("click", () => {
+            sessionStorage.setItem("pedidoAtual", JSON.stringify(pedido));
+            window.location.href = "montagem.html";
+        });
+
+        cliente.append(img, nome);
+        card.append(cliente, descricao, tempo, aceitar);
+        area.appendChild(card);
+        const status = document.getElementById("mensagemPedidos");
+        if (status) status.textContent = "";
+    });
+}
+
+function iniciarPaginaMontagem() {
+    const bandeja = document.getElementById("bandejaIngredientes");
+    const receita = document.getElementById("pedidoReceita");
+    const tempoValor = document.getElementById("tempoFornoValor");
+    if (!bandeja || !receita) return;
+
+    let pedido = null;
+    try {
+        const texto = sessionStorage.getItem("pedidoAtual");
+        pedido = texto ? JSON.parse(texto) : null;
+    } catch (_) {}
+
+    if (!pedido) {
+        mostrarErro("Nenhum pedido selecionado. Volte para pedidos.html e receba um pedido.");
+        return;
+    }
+
+    bandeja.replaceChildren();
+    Object.entries(config.ingredientes).forEach(([id, ingrediente]) => {
+        const bloco = document.createElement("div");
+        bloco.className = "blocoPizza";
+        bloco.id = id;
+        bloco.textContent = ingrediente.nome || id;
+        bloco.style.backgroundColor = ingrediente.cor || "#777";
+        bloco.title = ingrediente.nome || id;
+        bandeja.appendChild(bloco);
+    });
+
+    if (tempoValor) tempoValor.textContent = formatarTempo(pedido.tempoForno);
+    receita.replaceChildren();
+
+    const titulo = document.createElement("div");
+    titulo.className = "itemPedido";
+    titulo.textContent = `Pizza: ${pedido.pizzaNome}`;
+    receita.appendChild(titulo);
+
+    pedido.ingredientes.forEach((id, indice) => {
+        const item = document.createElement("div");
+        item.className = "itemPedido";
+        item.dataset.ingredienteEsperado = id;
+        item.textContent = `${indice + 1} - ${config.ingredientes[id]?.nome || id}`;
+        receita.appendChild(item);
+    });
+
+    const itemTempo = document.createElement("div");
+    itemTempo.className = "itemPedido tempoPedido";
+    itemTempo.textContent = `◷ ${formatarTempo(pedido.tempoForno)} min`;
+    receita.appendChild(itemTempo);
+}
+
+// Inicia a página sem fazer nenhuma requisição a servidor ou arquivo JSON.
+if (document.getElementById("backgroundDosPedidos")) {
+    iniciarPaginaPedidos();
+} else if (document.getElementById("areaPizza")) {
+    iniciarPaginaMontagem();
+    executarSistemaDeMontagem();
+}
+
+function executarSistemaDeMontagem() {
+// ==========================================
 // SISTEMA DE MONTAGEM DA PIZZA
 // ==========================================
 
 const areaPizza = document.getElementById("areaPizza");
-const pedidoAtual = sessionStorage.getItem("pedidoAtual");
+const pedidoAtualTexto = sessionStorage.getItem("pedidoAtual");
+let pedido = null;
+try { pedido = pedidoAtualTexto ? JSON.parse(pedidoAtualTexto) : null; } catch (erro) { console.error("Pedido inválido:", erro); }
 const blocosPizza = document.querySelectorAll(".blocoPizza");
 const tempoFornoBloco = document.getElementById("tempoFornoBloco");
-if (pedidoAtual) {
-
-    const pedido = JSON.parse(pedidoAtual);
-
-    console.log("Pedido recebido:", pedido);
-
-}
+if (pedido) console.log("Pedido recebido:", pedido);
 if (areaPizza) {
 
     let proximoId = 1;
@@ -827,21 +1003,33 @@ if (tempoFornoBloco) {
             "click",
             function() {
 
-                console.log(
-                    "Blocos montados:",
-                    document.querySelectorAll(
-                        ".ingredienteMontado"
-                    )
-                );
+                const montados = [...document.querySelectorAll(".ingredienteMontado")];
+                const idsMontados = montados
+                    .map(bloco => bloco.dataset.ingrediente)
+                    .filter(id => id && id !== "tempoForno");
+                const esperados = pedido && Array.isArray(pedido.ingredientes) ? pedido.ingredientes : [];
+                const faltando = esperados.filter(id => !idsMontados.includes(id));
+                const extras = idsMontados.filter(id => !esperados.includes(id));
+                const tempo = montados.some(bloco => bloco.dataset.ingrediente === "tempoForno");
 
-
-                alert(
-                    "Montagem funcionando!"
-                );
+                if (!pedido) {
+                    alert("Nenhum pedido foi recebido. Volte à página de pedidos e escolha um cliente.");
+                } else if (faltando.length === 0 && extras.length === 0 && tempo) {
+                    alert("Pedido montado corretamente! 🍕");
+                } else {
+                    const nomesFaltando = faltando.map(id => config.ingredientes[id]?.nome || id);
+                    const nomesExtras = extras.map(id => config.ingredientes[id]?.nome || id);
+                    let mensagem = "Ainda há diferenças na montagem.";
+                    if (nomesFaltando.length) mensagem += "\\nFaltando: " + nomesFaltando.join(", ");
+                    if (nomesExtras.length) mensagem += "\\nIngredientes extras: " + nomesExtras.join(", ");
+                    if (!tempo) mensagem += "\\nAdicione o bloco de tempo de forno.";
+                    alert(mensagem);
+                }
 
             }
         );
 
     }
 
+}
 }

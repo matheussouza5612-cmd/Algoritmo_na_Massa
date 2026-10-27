@@ -1,1446 +1,566 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Configuração do Jogo</title>
-
     <style>
-
-        * {
-            box-sizing: border-box;
-        }
-
+        * { box-sizing: border-box; }
+        :root { color-scheme: dark; }
         body {
-            margin: 0;
-            padding: 30px;
-
-            background-color: #222;
-            color: white;
-
+            margin: 0; padding: 28px 16px 60px;
+            background: #222; color: #f5f5f5;
             font-family: Arial, sans-serif;
         }
-
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
+        main { max-width: 900px; margin: auto; }
+        h1 { text-align: center; margin: 8px 0 10px; }
+        .subtitulo { text-align: center; color: #bbb; margin: 0 0 24px; }
+        .status {
+            position: sticky; top: 10px; z-index: 5;
+            padding: 11px 14px; margin: 0 auto 18px;
+            border: 1px solid #555; border-radius: 9px;
+            background: #303030; max-width: 900px;
         }
-
-        h2 {
-            margin-top: 0;
-        }
-
+        .status.ok { border-color: #39865d; }
+        .status.erro { border-color: #bd4545; }
         .painel {
-            max-width: 900px;
-            margin: 0 auto 25px auto;
-
-            padding: 25px;
-
-            background-color: #333;
-
-            border: 2px solid #555;
-            border-radius: 15px;
+            margin: 0 0 16px; background: #333;
+            border: 1px solid #555; border-radius: 12px; overflow: hidden;
         }
-
-        .campo {
-            display: flex;
-            flex-direction: column;
-
-            margin-bottom: 15px;
+        .cabecalho {
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 14px; padding: 17px 20px;
         }
-
-        .campo label {
-            margin-bottom: 6px;
-
-            font-weight: bold;
-        }
-
-        .campo input,
-        .campo select,
-        .campo textarea {
-
-            padding: 10px;
-
-            border: 2px solid #555;
-            border-radius: 8px;
-
+        .cabecalho h2 { margin: 0; font-size: 1.2rem; }
+        .conteudo { padding: 0 20px 20px; }
+        .painel.fechado .conteudo { display: none; }
+        .painel.fechado .cabecalho { padding-bottom: 17px; }
+        .campo { display: flex; flex-direction: column; gap: 6px; margin: 0 0 14px; }
+        label { font-weight: 700; }
+        input, select {
+            width: 100%; padding: 10px 11px; border-radius: 7px;
+            border: 1px solid #666; background: #202020; color: white;
             font-size: 16px;
         }
-
-        .campo textarea {
-            min-height: 100px;
-            resize: vertical;
-        }
-
+        input[type="color"] { height: 44px; padding: 4px; cursor: pointer; }
+        input[type="checkbox"] { width: auto; accent-color: #df2525; }
         button {
-
-            padding: 10px 18px;
-
-            border: none;
-            border-radius: 8px;
-
-            background-color: #d71919;
-            color: white;
-
-            font-size: 16px;
-            font-weight: bold;
-
-            cursor: pointer;
+            border: 0; border-radius: 7px; padding: 10px 14px;
+            background: #d71919; color: white; font-weight: 700;
+            font-size: 15px; cursor: pointer;
         }
-
-        button:hover {
-            background-color: #ff2525;
-        }
-
-        .botaoSecundario {
-            background-color: #555;
-        }
-
-        .botaoSecundario:hover {
-            background-color: #666;
-        }
-
+        button:hover { background: #f12a2a; }
+        button:disabled { opacity: .45; cursor: not-allowed; }
+        .secundario { background: #555; }
+        .secundario:hover { background: #686868; }
+        .perigo { background: #7f2525; }
+        .perigo:hover { background: #a42d2d; }
+        .linha { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+        .lista { display: grid; gap: 9px; margin-top: 16px; }
         .item {
-
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            padding: 12px;
-
-            margin-top: 10px;
-
-            background-color: #444;
-
-            border-radius: 8px;
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 12px; padding: 12px; background: #414141;
+            border-radius: 8px; min-width: 0;
         }
-
-        .item span {
-            word-break: break-word;
+        .item-info { min-width: 0; overflow-wrap: anywhere; }
+        .item-info small { display: block; color: #c6c6c6; margin-top: 4px; }
+        .item-acoes { display: flex; gap: 8px; flex-shrink: 0; }
+        .previa {
+            width: 100%; max-width: 250px; min-height: 42px;
+            display: flex; justify-content: center; align-items: center;
+            margin: 0 0 14px; border-radius: 5px; color: white;
+            font-weight: 700; text-shadow: 1px 1px 2px #222;
+            box-shadow: 0 2px 4px #111;
         }
-
-        .lista {
-            margin-top: 15px;
+        .opcoes-ingredientes {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+            gap: 8px; margin: 8px 0 16px;
         }
-
-        .ingredientes {
-
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-
-            margin-top: 10px;
+        .opcao-ingrediente {
+            display: flex; align-items: center; gap: 9px;
+            padding: 10px; background: #252525; border: 1px solid #555;
+            border-radius: 7px; cursor: pointer;
         }
-
-        .ingrediente {
-
-            padding: 6px 10px;
-
-            background-color: #555;
-
-            border-radius: 20px;
+        .bolinha { width: 16px; height: 16px; border-radius: 4px; flex-shrink: 0; }
+        .vazio { color: #bbb; padding: 12px; background: #292929; border-radius: 7px; }
+        .nota { color: #c8c8c8; font-size: .92rem; line-height: 1.45; margin: 0 0 14px; }
+        .botoes { display: flex; flex-wrap: wrap; gap: 9px; }
+        .contador { color: #bbb; font-size: .9rem; margin-top: 8px; }
+        @media (max-width: 560px) {
+            body { padding: 16px 10px 40px; }
+            .cabecalho { padding: 14px; }
+            .conteudo { padding: 0 14px 16px; }
+            .linha { grid-template-columns: 1fr; gap: 0; }
+            .item { align-items: flex-start; flex-direction: column; }
+            .item-acoes { align-self: flex-end; }
         }
-
-        .grupoBotoes {
-
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-
-            margin-top: 15px;
-        }
-
-        #resultadoJson {
-
-            width: 100%;
-            min-height: 300px;
-
-            margin-top: 15px;
-
-            padding: 15px;
-
-            background-color: #111;
-            color: #00ff88;
-
-            border: 2px solid #444;
-            border-radius: 10px;
-
-            font-family: monospace;
-            font-size: 14px;
-
-            resize: vertical;
-        }
-
-        .aviso {
-
-            padding: 12px;
-
-            margin-top: 15px;
-
-            background-color: #453d16;
-
-            border: 1px solid #8d7c24;
-
-            border-radius: 8px;
-        }
-
-        .oculto {
-            display: none;
-        }
-
     </style>
-
 </head>
-
 <body>
-
+<main>
     <h1>Configuração do Jogo</h1>
+    <p class="subtitulo">Cadastre ingredientes e receitas usados pelo jogo.</p>
+    <div id="status" class="status">Conectando ao servidor...</div>
 
-
-    <!-- ========================================= -->
-    <!-- PIZZAS -->
-    <!-- ========================================= -->
-
-    <div class="painel">
-
-        <h2>Pizzas genéricas</h2>
-
-        <div class="campo">
-
-            <label for="nomePizza">
-                Nome da pizza
-            </label>
-
-            <input
-                type="text"
-                id="nomePizza"
-                placeholder="Ex: Pepperoni"
-            >
-
+    <section class="painel" id="secIngredientes">
+        <div class="cabecalho">
+            <h2>Ingredientes</h2>
+            <button type="button" class="secundario botao-toggle" aria-expanded="true">Ocultar</button>
         </div>
-
-
-        <div class="campo">
-
-            <label for="ingredientesPizza">
-                Ingredientes
-            </label>
-
-            <input
-                type="text"
-                id="ingredientesPizza"
-                placeholder="Ex: massa, molho, queijo, pepperoni"
-            >
-
-        </div>
-
-
-        <div class="campo">
-
-            <label for="tempoPizza">
-                Tempo de forno
-            </label>
-
-            <input
-                type="text"
-                id="tempoPizza"
-                placeholder="Ex: 3:00"
-            >
-
-        </div>
-
-
-        <button id="adicionarPizza">
-            Adicionar pizza
-        </button>
-
-
-        <div
-            class="lista"
-            id="listaPizzas"
-        ></div>
-
-    </div>
-
-
-
-    <!-- ========================================= -->
-    <!-- CLIENTES -->
-    <!-- ========================================= -->
-
-    <div class="painel">
-
-        <h2>Clientes específicos</h2>
-
-
-        <div class="campo">
-
-            <label for="nomeCliente">
-                Nome
-            </label>
-
-            <input
-                type="text"
-                id="nomeCliente"
-                placeholder="Ex: Matheus"
-            >
-
-        </div>
-
-
-        <div class="campo">
-
-            <label for="sobrenomeCliente">
-                Sobrenome
-            </label>
-
-            <input
-                type="text"
-                id="sobrenomeCliente"
-                placeholder="Deixe vazio para sortear"
-            >
-
-        </div>
-
-
-        <div class="campo">
-
-            <label for="imagemCliente">
-                Imagem
-            </label>
-
-            <input
-                type="text"
-                id="imagemCliente"
-                placeholder="Ex: imagens/matheus.png"
-            >
-
-        </div>
-
-
-        <div class="campo">
-
-            <label for="tipoPizzaCliente">
-                Tipo de pedido
-            </label>
-
-            <select id="tipoPizzaCliente">
-
-                <option value="generica">
-                    Usar pizza genérica
-                </option>
-
-                <option value="exclusiva">
-                    Criar pizza exclusiva
-                </option>
-
-            </select>
-
-        </div>
-
-
-
-        <!-- PIZZA GENÉRICA -->
-
-        <div id="pizzaGenerica">
-
+        <div class="conteudo">
+            <p class="nota">Cada ingrediente vira um bloco arrastável na montagem. O nome e a cor cadastrados serão usados pelo jogo.</p>
             <div class="campo">
-
-                <label for="pizzaCliente">
-                    Pizza
-                </label>
-
-                <select id="pizzaCliente">
-
-                </select>
-
+                <label for="nomeIngrediente">Nome do ingrediente</label>
+                <input id="nomeIngrediente" type="text" maxlength="50" placeholder="Ex.: Pepperoni">
             </div>
-
-        </div>
-
-
-
-        <!-- PIZZA EXCLUSIVA -->
-
-        <div
-            id="pizzaExclusiva"
-            class="oculto"
-        >
-
             <div class="campo">
-
-                <label for="nomePizzaExclusiva">
-                    Nome da pizza
-                </label>
-
-                <input
-                    type="text"
-                    id="nomePizzaExclusiva"
-                    placeholder="Ex: Pizza de Sorvete"
-                >
-
+                <label for="corIngrediente">Cor do bloco</label>
+                <input id="corIngrediente" type="color" value="#8d3069">
             </div>
+            <div id="previaIngrediente" class="previa" style="background:#8d3069">Pepperoni</div>
+            <button id="adicionarIngrediente" type="button">Adicionar ingrediente</button>
+            <div id="listaIngredientes" class="lista"></div>
+        </div>
+    </section>
 
-
+    <section class="painel" id="secPizzas">
+        <div class="cabecalho">
+            <h2>Pizzas genéricas</h2>
+            <button type="button" class="secundario botao-toggle" aria-expanded="true">Ocultar</button>
+        </div>
+        <div class="conteudo">
+            <p class="nota">Selecione os ingredientes cadastrados. As pizzas guardam os identificadores dos ingredientes, evitando erros de digitação.</p>
             <div class="campo">
-
-                <label for="ingredientesPizzaExclusiva">
-                    Ingredientes
-                </label>
-
-                <input
-                    type="text"
-                    id="ingredientesPizzaExclusiva"
-                    placeholder="Ex: massa, sorvete, chocolate"
-                >
-
+                <label for="nomePizza">Nome da pizza</label>
+                <input id="nomePizza" type="text" maxlength="70" placeholder="Ex.: Pizza de Pepperoni">
             </div>
-
-
             <div class="campo">
-
-                <label for="tempoPizzaExclusiva">
-                    Tempo de forno
-                </label>
-
-                <input
-                    type="text"
-                    id="tempoPizzaExclusiva"
-                    placeholder="Ex: 2:00"
-                >
-
+                <label>Ingredientes da receita</label>
+                <div id="selecaoIngredientes" class="opcoes-ingredientes"></div>
             </div>
-
+            <div class="linha">
+                <div class="campo">
+                    <label for="minutosForno">Minutos de forno</label>
+                    <input id="minutosForno" type="number" min="0" max="999" step="1" value="3">
+                </div>
+                <div class="campo">
+                    <label for="segundosForno">Segundos adicionais</label>
+                    <input id="segundosForno" type="number" min="0" max="59" step="1" value="0">
+                </div>
+            </div>
+            <button id="adicionarPizza" type="button">Adicionar pizza</button>
+            <div id="listaPizzas" class="lista"></div>
         </div>
+    </section>
 
-
-        <button id="adicionarCliente">
-            Adicionar cliente
-        </button>
-
-
-        <div
-            class="lista"
-            id="listaClientes"
-        ></div>
-
-    </div>
-
-
-
-    <!-- ========================================= -->
-    <!-- NOMES -->
-    <!-- ========================================= -->
-
-    <div class="painel">
-
-        <h2>Nomes genéricos</h2>
-
-
-        <div class="campo">
-
-            <label for="novoNome">
-                Nome
-            </label>
-
-            <input
-                type="text"
-                id="novoNome"
-                placeholder="Ex: João"
-            >
-
+    <section class="painel" id="secNomes">
+        <div class="cabecalho">
+            <h2>Nomes genéricos</h2>
+            <button type="button" class="secundario botao-toggle" aria-expanded="true">Ocultar</button>
         </div>
-
-
-        <button id="adicionarNome">
-            Adicionar nome
-        </button>
-
-
-        <div
-            class="lista"
-            id="listaNomes"
-        ></div>
-
-    </div>
-
-
-
-    <!-- ========================================= -->
-    <!-- SOBRENOMES -->
-    <!-- ========================================= -->
-
-    <div class="painel">
-
-        <h2>Sobrenomes genéricos</h2>
-
-
-        <div class="campo">
-
-            <label for="novoSobrenome">
-                Sobrenome
-            </label>
-
-            <input
-                type="text"
-                id="novoSobrenome"
-                placeholder="Ex: Silva"
-            >
-
+        <div class="conteudo">
+            <p class="nota">O gênero determina qual imagem será usada: <code>img/cliente_m.png</code> ou <code>img/cliente_f.png</code>.</p>
+            <div class="linha">
+                <div class="campo">
+                    <label for="novoNome">Nome</label>
+                    <input id="novoNome" type="text" maxlength="40" placeholder="Ex.: Ana">
+                </div>
+                <div class="campo">
+                    <label for="generoNome">Gênero da imagem</label>
+                    <select id="generoNome">
+                        <option value="feminino">Feminino</option>
+                        <option value="masculino">Masculino</option>
+                    </select>
+                </div>
+            </div>
+            <button id="adicionarNome" type="button">Adicionar nome</button>
+            <div id="listaNomes" class="lista"></div>
         </div>
+    </section>
 
-
-        <button id="adicionarSobrenome">
-            Adicionar sobrenome
-        </button>
-
-
-        <div
-            class="lista"
-            id="listaSobrenomes"
-        ></div>
-
-    </div>
-
-
-
-    <!-- ========================================= -->
-    <!-- EXPORTAÇÃO -->
-    <!-- ========================================= -->
-
-    <div class="painel">
-
-        <h2>Exportar configuração</h2>
-
-        <div class="aviso">
-
-            Configure tudo acima e depois clique em
-            <strong>Gerar JSON</strong>.
-
+    <section class="painel" id="secSobrenomes">
+        <div class="cabecalho">
+            <h2>Sobrenomes genéricos</h2>
+            <button type="button" class="secundario botao-toggle" aria-expanded="true">Ocultar</button>
         </div>
-
-
-        <div class="grupoBotoes">
-
-            <button id="gerarJson">
-                Gerar JSON
-            </button>
-
-            <button
-                id="baixarJson"
-                class="botaoSecundario"
-            >
-                Baixar JSON
-            </button>
-
+        <div class="conteudo">
+            <div class="campo">
+                <label for="novoSobrenome">Sobrenome</label>
+                <input id="novoSobrenome" type="text" maxlength="50" placeholder="Ex.: Souza">
+            </div>
+            <button id="adicionarSobrenome" type="button">Adicionar sobrenome</button>
+            <div id="listaSobrenomes" class="lista"></div>
         </div>
+    </section>
 
+    <section class="painel" id="secSalvar">
+        <div class="cabecalho">
+            <h2>Configuração salva</h2>
+            <button type="button" class="secundario botao-toggle" aria-expanded="true">Ocultar</button>
+        </div>
+        <div class="conteudo">
+            <p class="nota">Cada cadastro ou remoção é enviado ao servidor e gravado em <code>presets/config.json</code>. Não é necessário exportar ou baixar o arquivo.</p>
+            <div class="botoes">
+                <button id="recarregar" type="button" class="secundario">Recarregar do JSON</button>
+            </div>
+            <p id="resumo" class="contador"></p>
+        </div>
+    </section>
+</main>
 
-        <textarea
-            id="resultadoJson"
-            readonly
-        ></textarea>
+<script>
+    "use strict";
 
-    </div>
+    const API = "/api/config";
+    let dados = null;
+    let salvando = false;
 
+    const $ = id => document.getElementById(id);
 
+    function mostrarStatus(mensagem, tipo = "") {
+        const status = $("status");
+        status.textContent = mensagem;
+        status.className = "status" + (tipo ? " " + tipo : "");
+    }
 
-    <script>
+    function slug(texto) {
+        return texto.normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .toLowerCase()
+            .trim()
+            .replace(/[^a-z0-9]+/g, "_")
+            .replace(/^_+|_+$/g, "");
+    }
 
-        // ==========================================
-        // DADOS DO SISTEMA
-        // ==========================================
+    function formatarTempo(segundos) {
+        const minutos = Math.floor(segundos / 60);
+        const resto = segundos % 60;
+        return `${minutos}:${String(resto).padStart(2, "0")}`;
+    }
 
-        let dados = {
+    async function carregarConfiguracao() {
+        try {
+            mostrarStatus("Carregando configurações...");
+            const resposta = await fetch(API);
+            if (!resposta.ok) throw new Error(await resposta.text());
+            dados = await resposta.json();
 
-            pizzas: {},
+            // Garante compatibilidade com um arquivo inicial vazio/parcial.
+            dados.nomes ??= [];
+            dados.sobrenomes ??= [];
+            dados.ingredientes ??= {};
+            dados.pizzas ??= {};
 
-            clientes: {},
+            renderizarTudo();
+            mostrarStatus("Configurações carregadas de presets/config.json.", "ok");
+        } catch (erro) {
+            mostrarStatus("Não consegui carregar o JSON. Inicie o servidor com node server.js. " + erro.message, "erro");
+        }
+    }
 
-            nomes: [],
+    async function salvarConfiguracao(mensagem = "Alterações salvas em presets/config.json.") {
+        if (salvando) return false;
+        salvando = true;
+        try {
+            mostrarStatus("Salvando alterações...");
+            const resposta = await fetch(API, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(dados)
+            });
+            const resultado = await resposta.json().catch(() => ({}));
+            if (!resposta.ok) throw new Error(resultado.erro || "Falha ao salvar.");
+            mostrarStatus(mensagem, "ok");
+            atualizarResumo();
+            return true;
+        } catch (erro) {
+            mostrarStatus("Não foi possível salvar. " + erro.message, "erro");
+            return false;
+        } finally {
+            salvando = false;
+        }
+    }
 
-            sobrenomes: []
+    function criarItem(texto, detalhe, aoRemover, rotulo = "Remover") {
+        const item = document.createElement("div");
+        item.className = "item";
 
-        };
+        const info = document.createElement("div");
+        info.className = "item-info";
+        const nome = document.createElement("strong");
+        nome.textContent = texto;
+        info.appendChild(nome);
 
-
-        // ==========================================
-        // ELEMENTOS
-        // ==========================================
-
-        const nomePizza =
-            document.getElementById("nomePizza");
-
-        const ingredientesPizza =
-            document.getElementById("ingredientesPizza");
-
-        const tempoPizza =
-            document.getElementById("tempoPizza");
-
-        const nomeCliente =
-            document.getElementById("nomeCliente");
-
-        const sobrenomeCliente =
-            document.getElementById("sobrenomeCliente");
-
-        const imagemCliente =
-            document.getElementById("imagemCliente");
-
-        const tipoPizzaCliente =
-            document.getElementById("tipoPizzaCliente");
-
-        const pizzaCliente =
-            document.getElementById("pizzaCliente");
-
-        const pizzaGenerica =
-            document.getElementById("pizzaGenerica");
-
-        const pizzaExclusiva =
-            document.getElementById("pizzaExclusiva");
-
-
-
-        // ==========================================
-        // TROCAR TIPO DE PIZZA DO CLIENTE
-        // ==========================================
-
-        tipoPizzaCliente.addEventListener(
-            "change",
-            function () {
-
-                if (
-                    tipoPizzaCliente.value ===
-                    "generica"
-                ) {
-
-                    pizzaGenerica
-                        .classList
-                        .remove("oculto");
-
-                    pizzaExclusiva
-                        .classList
-                        .add("oculto");
-
-                }
-
-                else {
-
-                    pizzaGenerica
-                        .classList
-                        .add("oculto");
-
-                    pizzaExclusiva
-                        .classList
-                        .remove("oculto");
-
-                }
-
-            }
-        );
-
-
-
-        // ==========================================
-        // ATUALIZAR SELECT DE PIZZAS
-        // ==========================================
-
-        function atualizarSelectPizzas() {
-
-            pizzaCliente.innerHTML = "";
-
-            let nomesPizzas =
-                Object.keys(dados.pizzas);
-
-
-            if (nomesPizzas.length === 0) {
-
-                let opcao =
-                    document.createElement("option");
-
-                opcao.textContent =
-                    "Nenhuma pizza cadastrada";
-
-                opcao.value = "";
-
-                pizzaCliente.appendChild(opcao);
-
-                return;
-
-            }
-
-
-            nomesPizzas.forEach(
-                function (nome) {
-
-                    let opcao =
-                        document.createElement("option");
-
-                    opcao.value = nome;
-
-                    opcao.textContent =
-                        dados.pizzas[nome].nome;
-
-                    pizzaCliente.appendChild(opcao);
-
-                }
-            );
-
+        if (detalhe) {
+            const small = document.createElement("small");
+            small.textContent = detalhe;
+            info.appendChild(small);
         }
 
-
-
-        // ==========================================
-        // MOSTRAR PIZZAS
-        // ==========================================
-
-        function mostrarPizzas() {
-
-            const lista =
-                document.getElementById(
-                    "listaPizzas"
-                );
-
-            lista.innerHTML = "";
-
-
-            Object.keys(dados.pizzas)
-                .forEach(
-                    function (id) {
-
-                        let pizza =
-                            dados.pizzas[id];
-
-
-                        let item =
-                            document.createElement(
-                                "div"
-                            );
-
-                        item.classList.add(
-                            "item"
-                        );
-
-
-                        item.innerHTML = `
-
-                            <span>
-
-                                <strong>
-                                    ${pizza.nome}
-                                </strong>
-
-                                <br>
-
-                                Ingredientes:
-                                ${pizza.ingredientes.join(", ")}
-
-                                <br>
-
-                                Forno:
-                                ${pizza.tempoForno}
-
-                            </span>
-
-                            <button
-                                class="botaoSecundario"
-                                onclick="removerPizza('${id}')"
-                            >
-                                Remover
-                            </button>
-
-                        `;
-
-
-                        lista.appendChild(item);
-
-                    }
-                );
-
-        }
-
-
-
-        // ==========================================
-        // ADICIONAR PIZZA
-        // ==========================================
-
-        document
-            .getElementById("adicionarPizza")
-            .addEventListener(
-                "click",
-                function () {
-
-                    let nome =
-                        nomePizza.value.trim();
-
-                    let ingredientes =
-                        ingredientesPizza.value
-                        .split(",")
-                        .map(
-                            function (ingrediente) {
-                                return ingrediente.trim();
-                            }
-                        )
-                        .filter(Boolean);
-
-                    let tempo =
-                        tempoPizza.value.trim();
-
-
-                    if (
-                        !nome ||
-                        ingredientes.length === 0 ||
-                        !tempo
-                    ) {
-
-                        alert(
-                            "Preencha todos os campos da pizza."
-                        );
-
-                        return;
-
-                    }
-
-
-                    let id =
-                        nome.toLowerCase()
-                        .replace(/\s+/g, "_");
-
-
-                    dados.pizzas[id] = {
-
-                        nome: nome,
-
-                        ingredientes:
-                            ingredientes,
-
-                        tempoForno:
-                            tempo
-
-                    };
-
-
-                    nomePizza.value = "";
-                    ingredientesPizza.value = "";
-                    tempoPizza.value = "";
-
-
-                    mostrarPizzas();
-
-                    atualizarSelectPizzas();
-
-                }
-            );
-
-
-
-        // ==========================================
-        // REMOVER PIZZA
-        // ==========================================
-
-        function removerPizza(id) {
-
-            delete dados.pizzas[id];
-
-            mostrarPizzas();
-
-            atualizarSelectPizzas();
-
-        }
-
-
-
-        // ==========================================
-        // ADICIONAR CLIENTE
-        // ==========================================
-
-        document
-            .getElementById("adicionarCliente")
-            .addEventListener(
-                "click",
-                function () {
-
-                    let nome =
-                        nomeCliente.value.trim();
-
-
-                    if (!nome) {
-
-                        alert(
-                            "Digite o nome do cliente."
-                        );
-
-                        return;
-
-                    }
-
-
-                    let id =
-                        nome.toLowerCase()
-                        .replace(/\s+/g, "_");
-
-
-                    let cliente = {
-
-                        sobrenome:
-                            sobrenomeCliente.value.trim(),
-
-                        imagem:
-                            imagemCliente.value.trim()
-
-                    };
-
-
-                    // ------------------------------
-                    // PIZZA GENÉRICA
-                    // ------------------------------
-
-                    if (
-                        tipoPizzaCliente.value ===
-                        "generica"
-                    ) {
-
-                        if (!pizzaCliente.value) {
-
-                            alert(
-                                "Cadastre uma pizza genérica primeiro."
-                            );
-
-                            return;
-
-                        }
-
-
-                        cliente.pizza =
-                            pizzaCliente.value;
-
-                    }
-
-
-                    // ------------------------------
-                    // PIZZA EXCLUSIVA
-                    // ------------------------------
-
-                    else {
-
-                        let nomePizzaExclusiva =
-                            document
-                            .getElementById(
-                                "nomePizzaExclusiva"
-                            )
-                            .value
-                            .trim();
-
-
-                        let ingredientes =
-                            document
-                            .getElementById(
-                                "ingredientesPizzaExclusiva"
-                            )
-                            .value
-                            .split(",")
-                            .map(
-                                function (ingrediente) {
-                                    return ingrediente.trim();
-                                }
-                            )
-                            .filter(Boolean);
-
-
-                        let tempo =
-                            document
-                            .getElementById(
-                                "tempoPizzaExclusiva"
-                            )
-                            .value
-                            .trim();
-
-
-                        if (
-                            !nomePizzaExclusiva ||
-                            ingredientes.length === 0 ||
-                            !tempo
-                        ) {
-
-                            alert(
-                                "Preencha todos os dados da pizza exclusiva."
-                            );
-
-                            return;
-
-                        }
-
-
-                        cliente.pizza = {
-
-                            nome:
-                                nomePizzaExclusiva,
-
-                            ingredientes:
-                                ingredientes,
-
-                            tempoForno:
-                                tempo
-
-                        };
-
-                    }
-
-
-                    dados.clientes[id] =
-                        cliente;
-
-
-                    nomeCliente.value = "";
-                    sobrenomeCliente.value = "";
-                    imagemCliente.value = "";
-
-
-                    document
-                        .getElementById(
-                            "nomePizzaExclusiva"
-                        )
-                        .value = "";
-
-                    document
-                        .getElementById(
-                            "ingredientesPizzaExclusiva"
-                        )
-                        .value = "";
-
-                    document
-                        .getElementById(
-                            "tempoPizzaExclusiva"
-                        )
-                        .value = "";
-
-
-                    mostrarClientes();
-
-                }
-            );
-
-
-
-        // ==========================================
-        // MOSTRAR CLIENTES
-        // ==========================================
-
-        function mostrarClientes() {
-
-            const lista =
-                document.getElementById(
-                    "listaClientes"
-                );
-
-            lista.innerHTML = "";
-
-
-            Object.keys(dados.clientes)
-                .forEach(
-                    function (id) {
-
-                        let cliente =
-                            dados.clientes[id];
-
-
-                        let pedido;
-
-
-                        if (
-                            typeof cliente.pizza ===
-                            "string"
-                        ) {
-
-                            pedido =
-                                dados
-                                .pizzas[
-                                    cliente.pizza
-                                ].nome;
-
-                        }
-
-                        else {
-
-                            pedido =
-                                cliente.pizza.nome;
-
-                        }
-
-
-                        let item =
-                            document.createElement(
-                                "div"
-                            );
-
-                        item.classList.add(
-                            "item"
-                        );
-
-
-                        item.innerHTML = `
-
-                            <span>
-
-                                <strong>
-                                    ${id}
-                                </strong>
-
-                                <br>
-
-                                Sobrenome:
-                                ${cliente.sobrenome || "Sorteado"}
-
-                                <br>
-
-                                Pizza:
-                                ${pedido}
-
-                            </span>
-
-                            <button
-                                class="botaoSecundario"
-                                onclick="removerCliente('${id}')"
-                            >
-                                Remover
-                            </button>
-
-                        `;
-
-
-                        lista.appendChild(item);
-
-                    }
-                );
-
-        }
-
-
-
-        // ==========================================
-        // REMOVER CLIENTE
-        // ==========================================
-
-        function removerCliente(id) {
-
-            delete dados.clientes[id];
-
-            mostrarClientes();
-
-        }
-
-
-
-        // ==========================================
-        // NOMES
-        // ==========================================
-
-        document
-            .getElementById("adicionarNome")
-            .addEventListener(
-                "click",
-                function () {
-
-                    let nome =
-                        document
-                        .getElementById("novoNome")
-                        .value
-                        .trim();
-
-
-                    if (!nome) {
+        const acoes = document.createElement("div");
+        acoes.className = "item-acoes";
+        const botao = document.createElement("button");
+        botao.type = "button";
+        botao.className = "perigo";
+        botao.textContent = rotulo;
+        botao.addEventListener("click", aoRemover);
+        acoes.appendChild(botao);
+
+        item.append(info, acoes);
+        return item;
+    }
+
+    function renderizarIngredientes() {
+        const lista = $("listaIngredientes");
+        lista.replaceChildren();
+
+        const ids = Object.keys(dados.ingredientes);
+        if (!ids.length) lista.appendChild(mensagemVazia("Nenhum ingrediente cadastrado ainda."));
+
+        ids.forEach(id => {
+            const ingrediente = dados.ingredientes[id];
+            const item = criarItem(
+                ingrediente.nome,
+                `Identificador: ${id} · Cor: ${ingrediente.cor}`,
+                async () => {
+                    const pizzasUsando = Object.entries(dados.pizzas)
+                        .filter(([, pizza]) => pizza.ingredientes.includes(id))
+                        .map(([, pizza]) => pizza.nome);
+                    if (pizzasUsando.length) {
+                        alert("Este ingrediente está sendo usado nestas pizzas: " + pizzasUsando.join(", ") +
+                              ". Remova-o das receitas antes de excluir o ingrediente.");
                         return;
                     }
-
-
-                    dados.nomes.push(nome);
-
-
-                    document
-                        .getElementById("novoNome")
-                        .value = "";
-
-
-                    mostrarNomes();
-
+                    if (!confirm(`Remover o ingrediente "${ingrediente.nome}"?`)) return;
+                    delete dados.ingredientes[id];
+                    renderizarTudo();
+                    await salvarConfiguracao();
                 }
             );
+            const swatch = document.createElement("span");
+            swatch.className = "bolinha";
+            swatch.style.backgroundColor = ingrediente.cor;
+            item.querySelector(".item-info").prepend(swatch);
+            item.querySelector(".item-info").style.display = "flex";
+            item.querySelector(".item-info").style.alignItems = "center";
+            item.querySelector(".item-info").style.gap = "10px";
+            lista.appendChild(item);
+        });
+    }
 
+    function renderizarSelecaoIngredientes() {
+        const container = $("selecaoIngredientes");
+        container.replaceChildren();
+        const ids = Object.keys(dados.ingredientes);
 
-
-        function mostrarNomes() {
-
-            const lista =
-                document.getElementById(
-                    "listaNomes"
-                );
-
-            lista.innerHTML = "";
-
-
-            dados.nomes.forEach(
-                function (nome, indice) {
-
-                    let item =
-                        document.createElement(
-                            "div"
-                        );
-
-                    item.classList.add(
-                        "item"
-                    );
-
-
-                    item.innerHTML = `
-
-                        <span>
-                            ${nome}
-                        </span>
-
-                        <button
-                            class="botaoSecundario"
-                            onclick="removerNome(${indice})"
-                        >
-                            Remover
-                        </button>
-
-                    `;
-
-
-                    lista.appendChild(item);
-
-                }
-            );
-
+        if (!ids.length) {
+            container.appendChild(mensagemVazia("Cadastre pelo menos um ingrediente antes de criar pizzas."));
+            $("adicionarPizza").disabled = true;
+            return;
         }
 
+        $("adicionarPizza").disabled = false;
+        ids.forEach(id => {
+            const ingrediente = dados.ingredientes[id];
+            const label = document.createElement("label");
+            label.className = "opcao-ingrediente";
 
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.value = id;
+            checkbox.name = "ingredientePizza";
 
-        function removerNome(indice) {
+            const bolinha = document.createElement("span");
+            bolinha.className = "bolinha";
+            bolinha.style.backgroundColor = ingrediente.cor;
 
-            dados.nomes.splice(
-                indice,
-                1
-            );
+            const nome = document.createElement("span");
+            nome.textContent = ingrediente.nome;
 
-            mostrarNomes();
+            label.append(checkbox, bolinha, nome);
+            container.appendChild(label);
+        });
+    }
 
+    function renderizarPizzas() {
+        const lista = $("listaPizzas");
+        lista.replaceChildren();
+        const ids = Object.keys(dados.pizzas);
+        if (!ids.length) lista.appendChild(mensagemVazia("Nenhuma pizza cadastrada ainda."));
+
+        ids.forEach(id => {
+            const pizza = dados.pizzas[id];
+            const nomesIngredientes = pizza.ingredientes
+                .map(ingredienteId => dados.ingredientes[ingredienteId]?.nome || ingredienteId)
+                .join(", ");
+            lista.appendChild(criarItem(
+                pizza.nome,
+                `Ingredientes: ${nomesIngredientes} · Forno: ${formatarTempo(pizza.tempoForno)}`,
+                async () => {
+                    if (!confirm(`Remover a pizza "${pizza.nome}"?`)) return;
+                    delete dados.pizzas[id];
+                    renderizarTudo();
+                    await salvarConfiguracao();
+                }
+            ));
+        });
+    }
+
+    function renderizarNomes() {
+        const lista = $("listaNomes");
+        lista.replaceChildren();
+        if (!dados.nomes.length) lista.appendChild(mensagemVazia("Nenhum nome cadastrado ainda."));
+
+        dados.nomes.forEach((registro, indice) => {
+            lista.appendChild(criarItem(
+                registro.nome,
+                `Imagem: ${registro.genero === "masculino" ? "cliente_m.png" : "cliente_f.png"}`,
+                async () => {
+                    if (!confirm(`Remover o nome "${registro.nome}"?`)) return;
+                    dados.nomes.splice(indice, 1);
+                    renderizarNomes();
+                    await salvarConfiguracao();
+                }
+            ));
+        });
+    }
+
+    function renderizarSobrenomes() {
+        const lista = $("listaSobrenomes");
+        lista.replaceChildren();
+        if (!dados.sobrenomes.length) lista.appendChild(mensagemVazia("Nenhum sobrenome cadastrado ainda."));
+
+        dados.sobrenomes.forEach((sobrenome, indice) => {
+            lista.appendChild(criarItem(
+                sobrenome,
+                "",
+                async () => {
+                    if (!confirm(`Remover o sobrenome "${sobrenome}"?`)) return;
+                    dados.sobrenomes.splice(indice, 1);
+                    renderizarSobrenomes();
+                    await salvarConfiguracao();
+                }
+            ));
+        });
+    }
+
+    function mensagemVazia(texto) {
+        const el = document.createElement("div");
+        el.className = "vazio";
+        el.textContent = texto;
+        return el;
+    }
+
+    function atualizarResumo() {
+        if (!dados) return;
+        $("resumo").textContent =
+            `${dados.nomes.length} nomes · ${dados.sobrenomes.length} sobrenomes · ` +
+            `${Object.keys(dados.ingredientes).length} ingredientes · ${Object.keys(dados.pizzas).length} pizzas`;
+    }
+
+    function renderizarTudo() {
+        renderizarIngredientes();
+        renderizarSelecaoIngredientes();
+        renderizarPizzas();
+        renderizarNomes();
+        renderizarSobrenomes();
+        atualizarResumo();
+        atualizarPrevia();
+    }
+
+    function atualizarPrevia() {
+        const nome = $("nomeIngrediente").value.trim() || "Ingrediente";
+        const cor = $("corIngrediente").value;
+        $("previaIngrediente").textContent = nome;
+        $("previaIngrediente").style.backgroundColor = cor;
+    }
+
+    $("nomeIngrediente").addEventListener("input", atualizarPrevia);
+    $("corIngrediente").addEventListener("input", atualizarPrevia);
+
+    $("adicionarIngrediente").addEventListener("click", async () => {
+        if (!dados) return;
+        const nome = $("nomeIngrediente").value.trim();
+        const id = slug(nome);
+        if (!nome) return alert("Digite o nome do ingrediente.");
+        if (!id) return alert("Use um nome com letras ou números.");
+        if (dados.ingredientes[id]) return alert("Já existe um ingrediente com esse nome ou identificador.");
+
+        dados.ingredientes[id] = { nome, cor: $("corIngrediente").value };
+        $("nomeIngrediente").value = "";
+        renderizarTudo();
+        if (await salvarConfiguracao()) atualizarPrevia();
+    });
+
+    $("adicionarPizza").addEventListener("click", async () => {
+        if (!dados) return;
+        const nome = $("nomePizza").value.trim();
+        const id = slug(nome);
+        const ingredientes = [...document.querySelectorAll('input[name="ingredientePizza"]:checked')]
+            .map(input => input.value);
+        const minutos = Number($("minutosForno").value);
+        const segundos = Number($("segundosForno").value);
+
+        if (!nome || !id) return alert("Digite um nome válido para a pizza.");
+        if (dados.pizzas[id]) return alert("Já existe uma pizza com esse nome ou identificador.");
+        if (!ingredientes.length) return alert("Selecione pelo menos um ingrediente.");
+        if (!Number.isInteger(minutos) || minutos < 0 ||
+            !Number.isInteger(segundos) || segundos < 0 || segundos > 59) {
+            return alert("Informe minutos válidos e segundos entre 0 e 59.");
         }
+        const tempoForno = minutos * 60 + segundos;
+        if (tempoForno < 1) return alert("O tempo de forno precisa ser maior que zero.");
 
+        dados.pizzas[id] = { nome, ingredientes, tempoForno };
+        $("nomePizza").value = "";
+        $("minutosForno").value = "3";
+        $("segundosForno").value = "0";
+        renderizarTudo();
+        await salvarConfiguracao();
+    });
 
-
-        // ==========================================
-        // SOBRENOMES
-        // ==========================================
-
-        document
-            .getElementById("adicionarSobrenome")
-            .addEventListener(
-                "click",
-                function () {
-
-                    let sobrenome =
-                        document
-                        .getElementById(
-                            "novoSobrenome"
-                        )
-                        .value
-                        .trim();
-
-
-                    if (!sobrenome) {
-                        return;
-                    }
-
-
-                    dados.sobrenomes.push(
-                        sobrenome
-                    );
-
-
-                    document
-                        .getElementById(
-                            "novoSobrenome"
-                        )
-                        .value = "";
-
-
-                    mostrarSobrenomes();
-
-                }
-            );
-
-
-
-        function mostrarSobrenomes() {
-
-            const lista =
-                document.getElementById(
-                    "listaSobrenomes"
-                );
-
-            lista.innerHTML = "";
-
-
-            dados.sobrenomes.forEach(
-                function (
-                    sobrenome,
-                    indice
-                ) {
-
-                    let item =
-                        document.createElement(
-                            "div"
-                        );
-
-                    item.classList.add(
-                        "item"
-                    );
-
-
-                    item.innerHTML = `
-
-                        <span>
-                            ${sobrenome}
-                        </span>
-
-                        <button
-                            class="botaoSecundario"
-                            onclick="removerSobrenome(${indice})"
-                        >
-                            Remover
-                        </button>
-
-                    `;
-
-
-                    lista.appendChild(item);
-
-                }
-            );
-
+    $("adicionarNome").addEventListener("click", async () => {
+        if (!dados) return;
+        const nome = $("novoNome").value.trim();
+        const genero = $("generoNome").value;
+        if (!nome) return alert("Digite um nome.");
+        if (dados.nomes.some(registro => registro.nome.toLocaleLowerCase("pt-BR") === nome.toLocaleLowerCase("pt-BR"))) {
+            return alert("Esse nome já está cadastrado.");
         }
+        dados.nomes.push({ nome, genero });
+        $("novoNome").value = "";
+        renderizarNomes();
+        await salvarConfiguracao();
+    });
 
-
-
-        function removerSobrenome(indice) {
-
-            dados.sobrenomes.splice(
-                indice,
-                1
-            );
-
-            mostrarSobrenomes();
-
+    $("adicionarSobrenome").addEventListener("click", async () => {
+        if (!dados) return;
+        const sobrenome = $("novoSobrenome").value.trim();
+        if (!sobrenome) return alert("Digite um sobrenome.");
+        if (dados.sobrenomes.some(item => item.toLocaleLowerCase("pt-BR") === sobrenome.toLocaleLowerCase("pt-BR"))) {
+            return alert("Esse sobrenome já está cadastrado.");
         }
+        dados.sobrenomes.push(sobrenome);
+        $("novoSobrenome").value = "";
+        renderizarSobrenomes();
+        await salvarConfiguracao();
+    });
 
+    document.querySelectorAll(".botao-toggle").forEach(botao => {
+        botao.addEventListener("click", () => {
+            const painel = botao.closest(".painel");
+            const fechado = painel.classList.toggle("fechado");
+            botao.textContent = fechado ? "Mostrar" : "Ocultar";
+            botao.setAttribute("aria-expanded", String(!fechado));
+        });
+    });
 
+    $("recarregar").addEventListener("click", async () => {
+        if (!confirm("Recarregar o JSON? Alterações ainda não salvas na tela serão descartadas.")) return;
+        await carregarConfiguracao();
+    });
 
-        // ==========================================
-        // GERAR JSON
-        // ==========================================
-
-        document
-            .getElementById("gerarJson")
-            .addEventListener(
-                "click",
-                function () {
-
-                    let json =
-                        JSON.stringify(
-                            dados,
-                            null,
-                            4
-                        );
-
-
-                    document
-                        .getElementById(
-                            "resultadoJson"
-                        )
-                        .value = json;
-
-                }
-            );
-
-
-
-        // ==========================================
-        // BAIXAR JSON
-        // ==========================================
-
-        document
-            .getElementById("baixarJson")
-            .addEventListener(
-                "click",
-                function () {
-
-                    let json =
-                        JSON.stringify(
-                            dados,
-                            null,
-                            4
-                        );
-
-
-                    let arquivo =
-                        new Blob(
-                            [json],
-                            {
-                                type:
-                                    "application/json"
-                            }
-                        );
-
-
-                    let url =
-                        URL.createObjectURL(
-                            arquivo
-                        );
-
-
-                    let link =
-                        document.createElement(
-                            "a"
-                        );
-
-                    link.href = url;
-
-                    link.download =
-                        "presets.json";
-
-
-                    link.click();
-
-
-                    URL.revokeObjectURL(
-                        url
-                    );
-
-                }
-            );
-
-
-
-        // ==========================================
-        // INICIALIZAÇÃO
-        // ==========================================
-
-        atualizarSelectPizzas();
-
-        mostrarPizzas();
-
-        mostrarClientes();
-
-        mostrarNomes();
-
-        mostrarSobrenomes();
-
-    </script>
-
+    carregarConfiguracao();
+</script>
 </body>
-
 </html>

@@ -1,0 +1,41 @@
+{
+    "nomes": [
+        {
+            "nome": "Eu",
+            "genero": "masculino"
+        }
+    ],
+    "sobrenomes": [
+        "não tem ainda"
+    ],
+    "ingredientes": {
+        "pepperoni": {
+            "nome": "Pepperoni",
+            "cor": "#8e2525"
+        },
+        "massa": {
+            "nome": "Massa",
+            "cor": "#f8c891"
+        },
+        "queijo": {
+            "nome": "Queijo",
+            "cor": "#f29d26"
+        },
+        "molho": {
+            "nome": "molho",
+            "cor": "#cb2a2a"
+        }
+    },
+    "pizzas": {
+        "pizza_de_seila": {
+            "nome": "Pizza de seila",
+            "ingredientes": [
+                "pepperoni",
+                "massa",
+                "queijo",
+                "molho"
+            ],
+            "tempoForno": 130
+        }
+    }
+}

@@ -6,91 +6,27 @@
     <title>Montagem</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-
 <body class="paginaMontagem">
-
     <div data-site-header></div>
 
-    <!-- PAINEL DOS INGREDIENTES -->
-
     <div class="painelIngredientes">
-
-        <div class="bandejaIngredientes">
-
-            <div class="blocoPizza massaPizza" id="massa">
-                Massa
-            </div>
-
-            <div class="blocoPizza molhoPizza" id="molho">
-                Molho
-            </div>
-
-            <div class="blocoPizza queijoPizza" id="queijo">
-                Queijo
-            </div>
-
-            <div class="blocoPizza pepperoniPizza" id="pepperoni">
-                Pepperoni
-            </div>
-
-        </div>
-
+        <div class="bandejaIngredientes" id="bandejaIngredientes"></div>
         <div class="tempoForno" id="tempoFornoBloco">
             <span>Tempo de Forno</span>
-            <span>0:00</span>
+            <span id="tempoFornoValor">0:00</span>
         </div>
-
     </div>
-
-
-    <!-- ÁREA CENTRAL DA MONTAGEM -->
 
     <div class="areaMontagem">
-
-        <div class="areaPizza" id="areaPizza">
-            <!-- Os ingredientes serão colocados aqui -->
-        </div>
-
-        <button class="botaoVerificar" id="botaoVerificar">
-            VERIFICAR
-        </button>
-
+        <div class="areaPizza" id="areaPizza"></div>
+        <button class="botaoVerificar" id="botaoVerificar">VERIFICAR</button>
     </div>
-
-
-    <!-- PRANCHETA DO PEDIDO -->
 
     <div class="painelPedido">
-
-        <div class="pedidoReceita">
-
-            <div class="itemPedido">
-                1- massa
-            </div>
-
-            <div class="itemPedido">
-                2- molho
-            </div>
-
-            <div class="itemPedido">
-                3- queijo
-            </div>
-
-            <div class="itemPedido">
-                4- pepperoni
-            </div>
-
-            <div class="itemPedido tempoPedido">
-                ◷ 3:00 min
-            </div>
-
-        </div>
-
+        <div class="pedidoReceita" id="pedidoReceita"></div>
     </div>
-
 
     <script src="header-loader.js"></script>
     <script src="script.js"></script>
-
 </body>
 </html>

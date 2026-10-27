@@ -5,97 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Receber Pedidos</title>
     <link rel="stylesheet" href="styles.css">
-    
 </head>
 <body>
-
-    <button id="addPedidoTeste">Adicionar pedido teste</button>
-    <a href="config.html">ir para pagina de configs</a>
-    
-    <div class="backgroundDosPedido" id="backgroundDosPedidos">
-
-    </div>
-    
-    <script>
-        // vou usar pra fazer o nome dos clientes
-        let nomes = [
-            "Daniel",
-            "Matheus",
-            "Renato"
-        ]
-        let sobrenome = [
-            "Matsuno",
-            "Souza"
-        ]
-        // imagens 
-
-        const botaoAddPedidoTeste = document.getElementById("addPedidoTeste");
-        const backgroundDosPedidos = document.getElementById("backgroundDosPedidos");
-        function adicionarPedido(pedido) {
-
-            let novoPedido = document.createElement("div");
-            novoPedido.classList.add("pedido");
-
-            let clienteDiv = document.createElement("div");
-            clienteDiv.classList.add("cliente");
-
-            let imgDoCliente = document.createElement("img");
-            imgDoCliente.src = pedido.imagem;
-            imgDoCliente.alt = "Foto representando o cliente";
-
-            let nomeDoCliente = document.createElement("h4");
-            nomeDoCliente.textContent = pedido.nome;
-
-            let botaoAceitar = document.createElement("a");
-
-            botaoAceitar.textContent = "receber pedido";
-
-            botaoAceitar.addEventListener("click", function () {
-
-            sessionStorage.setItem(
-                "pedidoAtual",
-                JSON.stringify(pedido)
-            );
-
-            window.location.href = "montagem.html";
-
-            });
-
-            clienteDiv.appendChild(imgDoCliente);
-            clienteDiv.appendChild(nomeDoCliente);
-
-            novoPedido.appendChild(clienteDiv);
-            novoPedido.appendChild(botaoAceitar);
-
-            backgroundDosPedidos.appendChild(novoPedido);
-        }
-
-        botaoAddPedidoTeste.addEventListener("click", function () {
-
-        let nome = nomes[Math.floor(Math.random() * nomes.length)];
-
-        let imagem = "imagens/Logo.png";
-
-        let pedido = {
-
-            nome: nome,
-
-            imagem: imagem,
-
-            ingredientes: [
-                "massa",
-                "molho",
-                "queijo",
-                "pepperoni"
-            ],
-
-            tempoForno: "3:00"
-
-        };
-
-        adicionarPedido(pedido);
-
-        });
-    </script>
+    <button id="addPedidoTeste">Adicionar pedido</button>
+    <p>Configurações temporárias ficam no início do arquivo <code>script.js</code>.</p>
+    <p id="mensagemPedidos" role="status"></p>
+    <div class="backgroundDosPedido" id="backgroundDosPedidos"></div>
+    <script src="script.js"></script>
 </body>
 </html>
