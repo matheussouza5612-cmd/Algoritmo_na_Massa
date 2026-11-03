@@ -30,21 +30,32 @@ const config = {
         "molho": {
             "nome": "molho",
             "cor": "#cb2a2a"
+        },
+        "acabaxi": {
+            "nome": "acabaxi",
+            "cor": "#cb2a2a"
+        },
+        "MOLHO RENATO": {
+            "nome": "MOLHO RENATO",
+            "cor": "#f8c891"
         }
     },
     "pizzas": {
         "pizza_de_seila": {
             "nome": "Pizza de seila",
             "ingredientes": [
-                "pepperoni",
                 "massa",
+                "pepperoni",
                 "queijo",
-                "molho"
+                "molho",
+                "acabaxi"
             ],
             "tempoForno": 130
         }
     }
 }
+
+
 
 
 
