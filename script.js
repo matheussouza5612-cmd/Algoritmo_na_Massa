@@ -1058,6 +1058,41 @@ if (tempoFornoBloco) {
                     alert("Nenhum pedido foi recebido. Volte à página de pedidos e escolha um cliente.");
                 } else if (faltando.length === 0 && extras.length === 0 && tempo) {
                     alert("Pedido montado corretamente! 🍕");
+                    
+if (botaoVerificar.dataset.enviadoForno === "sim") return;
+
+const chaveFila = "filaPizzasForno";
+
+let filaPizzas = [];
+
+try {
+    const dados = JSON.parse(
+        sessionStorage.getItem(chaveFila) || "[]"
+    );
+    filaPizzas = Array.isArray(dados) ? dados : [];
+} catch (erro) {
+    filaPizzas = [];
+}
+
+const pizzaParaForno = {
+    pizzaNome: pedido.nome || "Pizza",
+    nome: pedido.nome || "Pizza",
+    idPedido: "pedido-" + Date.now(),
+    tempoForno: Number(pedido.tempoForno) || 130,
+    recebidoEm: Date.now()
+};
+
+filaPizzas.push(pizzaParaForno);
+
+sessionStorage.setItem(
+    chaveFila,
+    JSON.stringify(filaPizzas)
+);
+
+botaoVerificar.dataset.enviadoForno = "sim";
+
+window.location.href = "fornos.html";
+
                 } else {
                     const nomesFaltando = faltando.map(id => config.ingredientes[id]?.nome || id);
                     const nomesExtras = extras.map(id => config.ingredientes[id]?.nome || id);
