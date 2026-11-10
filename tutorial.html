@@ -1,0 +1,340 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/img" href="imagens/Logo.png">
+    <title>Tutorial - Algoritmo na Massa</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-image: url("imagens/fundo.webp");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            padding: 30px 15px;
+        }
+
+        .tela-tutorial {
+            width: 100%;
+            max-width: 950px;
+            margin: auto;
+            background: rgba(255, 248, 235, 0.96);
+            border-radius: 25px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* CABEÇALHO */
+
+        .cabecalho {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            width: 230px;
+            max-width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .cabecalho h1 {
+            color: #9b3d1b;
+            font-size: 35px;
+            margin-bottom: 8px;
+        }
+
+        .cabecalho p {
+            color: #75452f;
+            font-size: 18px;
+        }
+
+        /* CARTÕES */
+
+        .instrucoes {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .cartao {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background-color: #fff;
+            border: 2px solid #f0c58c;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .numero {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+            width: 50px;
+            height: 50px;
+            background-color: #b94e25;
+            color: white;
+            font-size: 25px;
+            font-weight: bold;
+            border-radius: 50%;
+        }
+
+        .conteudo h2 {
+            color: #9b3d1b;
+            font-size: 21px;
+            margin-bottom: 7px;
+        }
+
+        .conteudo p {
+            color: #59483e;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        /* DICAS */
+
+        .dicas {
+            background-color: #ffe0a8;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .dicas h2 {
+            color: #913b1d;
+            margin-bottom: 10px;
+            font-size: 23px;
+        }
+
+        .dicas p {
+            color: #68412b;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        /* BOTÕES */
+
+        .botoes-menu {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 200px;
+            min-height: 55px;
+            border: none;
+            border-radius: 12px;
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-voltar {
+            font-family: fantasy;
+            background-color: #777;
+            text-shadow:
+                2px 2px 0 #444444,
+                -2px -2px 0 #444444,
+                2px -2px 0 #444444,
+                -2px 2px 0 #444444;
+            border: 3px solid #444444;
+        }
+
+        .btn-jogar {
+            font-family: fantasy;
+            background-color: #ca1726;
+            border: 3px solid rgb(116, 15, 15);
+            text-shadow:
+                2px 2px 0 #8B1E1E,
+                -2px -2px 0 #8B1E1E,
+                2px -2px 0 #8B1E1E,
+                -2px 2px 0 #8B1E1E;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            filter: brightness(1.1);
+        }
+
+        /* RESPONSIVIDADE */
+
+        @media (max-width: 600px) {
+
+            .tela-tutorial {
+                padding: 20px 15px;
+            }
+
+            .cabecalho h1 {
+                font-size: 28px;
+            }
+
+            .cartao {
+                padding: 15px;
+                gap: 12px;
+            }
+
+            .numero {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+
+            .conteudo h2 {
+                font-size: 18px;
+            }
+
+            .conteudo p {
+                font-size: 14px;
+            }
+
+            .botoes-menu {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 250px;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <main class="tela-tutorial">
+
+        <header class="cabecalho">
+
+            <img src="imagens/Logo.png"
+                 alt="Logo Algoritmo na Massa"
+                 class="logo">
+
+            <h1>COMO JOGAR?</h1>
+
+            <p>Aprenda a preparar pizzas deliciosas!</p>
+
+        </header>
+
+        <section class="instrucoes">
+
+            <div class="cartao">
+                <span class="numero">1</span>
+
+                <div class="conteudo">
+                    <h2>Veja o pedido do cliente</h2>
+
+                    <p>
+                        Antes de começar, observe com atenção o pedido
+                        do cliente. Confira quais ingredientes ele deseja
+                        na sua pizza.
+                    </p>
+                </div>
+            </div>
+
+            <div class="cartao">
+                <span class="numero">2</span>
+
+                <div class="conteudo">
+                    <h2>Monte sua pizza</h2>
+
+                    <p>
+                        Escolha os ingredientes solicitados pelo cliente.
+                        Tenha cuidado para não adicionar ingredientes
+                        errados ou deixar algum de fora!
+                    </p>
+                </div>
+            </div>
+
+            <div class="cartao">
+                <span class="numero">3</span>
+
+                <div class="conteudo">
+                    <h2>Organize o algoritmo</h2>
+
+                    <p>
+                        Coloque as etapas de preparação na ordem correta.
+                        Pense com atenção em cada passo antes de confirmar!
+                    </p>
+                </div>
+            </div>
+
+            <div class="cartao">
+                <span class="numero">4</span>
+
+                <div class="conteudo">
+                    <h2>Asse sua pizza</h2>
+
+                    <p>
+                        Siga as instruções de preparo e coloque sua pizza
+                        no forno. Fique atento ao tempo para não errar!
+                    </p>
+                </div>
+            </div>
+
+            <div class="cartao">
+                <span class="numero">5</span>
+
+                <div class="conteudo">
+                    <h2>Finalize o pedido</h2>
+
+                    <p>
+                        Confira o resultado da sua preparação e veja
+                        quantos pontos conseguiu conquistar!
+                    </p>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="dicas">
+
+            <h2>DICAS DO CHEF!</h2>
+
+            <p>
+                Leia os pedidos com atenção, pense antes de agir
+                e lembre-se: errar faz parte do aprendizado!
+            </p>
+
+        </section>
+
+        <footer class="botoes-menu">
+
+            <a href="index.html" class="btn btn-voltar">
+                VOLTAR
+            </a>
+
+            <a href="niveis.html" class="btn btn-jogar">
+                JOGAR
+            </a>
+
+        </footer>
+
+    </main>
+
+</body>
+</html>
