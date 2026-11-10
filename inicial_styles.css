@@ -33,7 +33,6 @@ body {
     width: 320px;
     height: 90px;
     padding: 15px 20px;
-    color: white;
     background-color: #ca1726;
     border: 4px solid rgb(116, 15, 15);
     border-radius: 18px;
@@ -47,11 +46,9 @@ body {
         -2px -2px 0 #8B1E1E,
         2px -2px 0 #8B1E1E,
         -2px 2px 0 #8B1E1E;
-
     display: flex;
     justify-content: center;
     align-items: center;
-
     text-decoration: none;
     color: white;
     box-sizing: border-box;

@@ -62,6 +62,12 @@ body {
         -2px -2px 0 #8B1E1E,
         2px -2px 0 #8B1E1E,
         -2px 2px 0 #8B1E1E;
+        display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    box-sizing: border-box;
 }
 
 .nivel{
@@ -76,4 +82,12 @@ body {
     align-items: center;
     justify-content: space-between;
     font-family: Arial, sans-serif;
+}
+
+.btn:link,
+.btn:visited,
+.btn:hover,
+.btn:active {
+    color: white;
+    text-decoration: none;
 }
