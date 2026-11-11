@@ -1,30 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Pontuação | Algoritmo na Massa</title>
     <link rel="icon" type="image/img" href="imagens/Logo.png">
-    <link rel="stylesheet" href="pontuacao.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 
-<body>
+<body class="paginaPontuacao">
     <div class="container">
         <div class="lado"></div>
 
         <div class="meio">
             <div class="blocoTop">
-                <h1 class="margin-0">PONTUAÇÃO FINAL</h1>
+                <h1 class="margin-0" id="tituloPontuacao">PONTUAÇÃO FINAL</h1>
+                <p class="subtituloPontuacao" id="subtituloPontuacao"></p>
 
                 <div class="lista">
                     <div class="linha">
                         <div>
                             <p class="margin-0">Construção do algoritmo:</p>
-                            <p class="margin-0">detalhes</p>
+                            <p class="margin-0" id="detalheAlgoritmo">detalhes</p>
                         </div>
                         <div>
-                            <p class="margin-0">Xpts</p>
+                            <p class="margin-0" id="pontosAlgoritmo">0 pts</p>
                         </div>
                     </div>
 
@@ -33,10 +34,10 @@
                     <div class="linha">
                         <div>
                             <p class="margin-0">Seleção de ingredientes:</p>
-                            <p class="margin-0">detalhes</p>
+                            <p class="margin-0" id="detalheIngredientes">detalhes</p>
                         </div>
                         <div>
-                            <p class="margin-0">Xpts</p>
+                            <p class="margin-0" id="pontosIngredientes">0 pts</p>
                         </div>
                     </div>
 
@@ -45,10 +46,10 @@
                     <div class="linha">
                         <div>
                             <p class="margin-0">Tempo de forno:</p>
-                            <p class="margin-0">detalhes</p>
+                            <p class="margin-0" id="detalheForno">detalhes</p>
                         </div>
                         <div>
-                            <p class="margin-0">Xpts</p>
+                            <p class="margin-0" id="pontosForno">0 pts</p>
                         </div>
                     </div>
 
@@ -57,10 +58,10 @@
                     <div class="linha">
                         <div>
                             <p class="margin-0">Tempo de atendimento:</p>
-                            <p class="margin-0">detalhes</p>
+                            <p class="margin-0" id="detalheAtendimento">detalhes</p>
                         </div>
                         <div>
-                            <p class="margin-0">Xpts</p>
+                            <p class="margin-0" id="pontosAtendimento">0 pts</p>
                         </div>
                     </div>
 
@@ -69,15 +70,17 @@
             <div class="blocoBot">
                 <div class="total">
                     <div>
-                        <h2 class="margin-0">Total: X/X Pontos</h2>
-                        <p class="margin-0">DESEMPENHO: </p>
+                        <h2 class="margin-0" id="totalPontos">Total: 0/100 Pontos</h2>
+                        <p class="margin-0" id="desempenhoPontos">DESEMPENHO: </p>
                     </div>
                 </div>
             </div>
+            <!-- <div class="conquistasPontuacao" id="conquistasPontuacao"></div> -->
+            <div class="historicoPontuacao" id="historicoPontuacao"></div>
         </div>
 
         <div class="lado">
-            <a href="" class="continue">CONTINUAR</a>
+            <a href="pedidos.html" class="continue" id="proximaTela">CONTINUAR</a>
         </div>
     </div>
 
@@ -92,6 +95,7 @@
 
 
 
+<script src="script.js"></script>
 </body>
 
 </html>

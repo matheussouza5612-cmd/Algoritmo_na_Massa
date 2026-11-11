@@ -5,13 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Níveis 🍕</title>
     <link rel="icon" type="image/img" href="imagens/Logo.png">
-    <link rel="stylesheet" href="niveis.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 
-<body>
+<body class="paginaNiveis">
     <header>
         <img src="imagens/Logo.png" alt="Algoritmo" class="logo">
     </header>
+    <nav class="navegacao-niveis" aria-label="Navegação">
+        <a href="index.html" class="botao-voltar-niveis">❮ VOLTAR</a>
+    </nav>
     <main>
         <section>
             <div class="nivel">
@@ -21,7 +24,7 @@
                 </div>
 
                 <div class="botoes-menu">
-                    <a class="btn btn-iniciar"href="pedidos.html">JOGAR</a>
+                    <a class="btn btn-iniciar" href="pedidos.html?nivel=facil" data-iniciar-nivel="facil">JOGAR</a>
                 </div>
             </div>
    
@@ -30,9 +33,9 @@
                     <h2> NÍVEL: <span class="medio">MÉDIO</span></h2>
                     <P>6 clientes</P>
                 </div>
-                <div class="cadeado">🔒</div>
+                
                 <div class="botoes-menu">
-                    <button class="btn btn-iniciar" disabled>COMEÇAR</button>
+                    <a class="btn btn-iniciar" href="pedidos.html?nivel=medio" data-iniciar-nivel="medio">JOGAR</a>
                 </div>
             </div>
    
@@ -42,14 +45,15 @@
                     <h2> NÍVEL: <span class="dificil">DIFÍCIL</span></h2>
                     <P>10 clientes</P>
                 </div>
-                <div class="cadeado">🔒</div>
+                
                 <div class="botoes-menu">
-                    <button class="btn btn-iniciar" disabled>COMEÇAR</button>
+                    <a class="btn btn-iniciar" href="pedidos.html?nivel=dificil" data-iniciar-nivel="dificil">JOGAR</a>
                 </div>
             </div>
         </section>
     </main>
     
    
+    <script src="script.js"></script>
 </body>
 </html>

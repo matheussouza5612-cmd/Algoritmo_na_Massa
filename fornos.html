@@ -6,10 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>4 Fornos | Algoritmo na Massa</title>
     <link rel="icon" href="imagens/Logo.png">
-    <link rel="stylesheet" href="fornos.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
     <script src="fornos.js" defer></script>
 </head>
-<body>
+<body class="paginaFornos">
     <main class="pagina-fornos">
 
         <header class="topo-fornos">
@@ -19,7 +20,7 @@
             <div class="titulo-placa">
                 <h1>ASSANDO A PIZZA...</h1>
             </div>
-            <p>Aguarde enquanto sua pizza assa! Cada forno tem seu próprio cronômetro.</p>
+            <p>Gerencie os quatro fornos: o tempo ideal não desliga o forno automaticamente!</p>
         </header>
 
         <div class="barra-acoes">
@@ -28,10 +29,6 @@
             </div>
             <div class="acoes-gerais">
                 <a href="pedidos.html" class="link-pedido">+ RECEBER OUTRO PEDIDO</a>
-                <button id="botaoDemo" class="botao-demo" type="button"
-                    title="Cria uma pizza fictícia para testar os cronômetros">
-                    + PIZZA DE TESTE
-                </button>
             </div>
         </div>
 
@@ -166,9 +163,9 @@
         </div>
 
         <p class="rodape-fornos">
-            Dica: comece a assar em um forno e pause outro;
-            os quatro cronômetros funcionam separadamente.
-            As pizzas continuam contando o tempo ao visitar outra tela do jogo.
+            Desligue cada forno manualmente! Há 15 segundos de tolerância após o tempo ideal;
+            depois, cada 5 segundos adicionais retiram 2 pontos. Os quatro fornos
+            continuam contando enquanto você visita outras telas do jogo.
         </p>
 
     </main>

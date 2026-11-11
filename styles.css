@@ -1,11 +1,15 @@
+/* CSS único: estilos originais da equipe isolados por página. */
+
+
+/* ===== Montagem e pedidos (CSS original, isolado) ===== */
 /* Parte do Daniel */
-html, body {
+html:has(body:is(.paginaPedidos,.paginaMontagem)), body:is(.paginaPedidos,.paginaMontagem) {
     margin: 0;
     padding: 0;
     width: 100%;
 }
 
-.cabeca {
+:where(body:is(.paginaPedidos,.paginaMontagem)) .cabeca {
     height: 16vh;
     width: 100%;
     background-color: #3D1700;
@@ -19,14 +23,14 @@ html, body {
     font-family: Impact, sans-serif;
 }
 
-.esquerda {
+:where(body:is(.paginaPedidos,.paginaMontagem)) .esquerda {
     display: flex;
     align-items: center;
     gap: 40px;
     justify-self: start;
 }
 
-#voltar {
+:where(body:is(.paginaPedidos,.paginaMontagem)) #voltar {
     height: 70px;
     width: 70px;
     background-color: #F5D3B0;
@@ -39,18 +43,18 @@ html, body {
     cursor: pointer;
 }
 
-#logo {
+:where(body:is(.paginaPedidos,.paginaMontagem)) #logo {
     height: 12vh;
 }
 
-.centro {
+:where(body:is(.paginaPedidos,.paginaMontagem)) .centro {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
 }
 
-.nivel {
+:where(body:is(.paginaPedidos,.paginaMontagem)) .nivel {
     margin: 0;
     color: white;
     font-size: 26px;
@@ -58,11 +62,11 @@ html, body {
     letter-spacing: 1px;
 }
 
-.facil {
+:where(body:is(.paginaPedidos,.paginaMontagem)) .facil {
     color: #1E9E3A;
 }
 
-.barra {
+:where(body:is(.paginaPedidos,.paginaMontagem)) .barra {
     width: 400px;
     height: 28px;
     background-color: #7A5C4D;
@@ -71,21 +75,21 @@ html, body {
     overflow: hidden; 
 }
 
-.barra-preenchimento {
+:where(body:is(.paginaPedidos,.paginaMontagem)) .barra-preenchimento {
     height: 100%;
     width: 0%; 
     background-color: #F18078;
     transition: width 0.4s;
 }
 
-.direita {
+:where(body:is(.paginaPedidos,.paginaMontagem)) .direita {
     display: flex;
     align-items: baseline;
     gap: 50px;
     justify-self: end;
 }
 
-.bloco-dicas {
+:where(body:is(.paginaPedidos,.paginaMontagem)) .bloco-dicas {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -93,7 +97,7 @@ html, body {
     color: white;
 }
 
-#dicas {
+:where(body:is(.paginaPedidos,.paginaMontagem)) #dicas {
     height: 70px;
     width: 70px;
     background-color: #F18078;
@@ -105,13 +109,13 @@ html, body {
     justify-content: center;
 }
 
-#dicas img {
+:where(body:is(.paginaPedidos,.paginaMontagem)) #dicas img {
     width: 80%;
     height: 80%;
     object-fit: contain;
 }
 
-#medalhas {
+:where(body:is(.paginaPedidos,.paginaMontagem)) #medalhas {
     display: flex;
     gap: 12px;
     padding: 18px 22px;
@@ -119,7 +123,7 @@ html, body {
     border-radius: 15px;
 }
 
-.medalha {
+:where(body:is(.paginaPedidos,.paginaMontagem)) .medalha {
     width: 55px;
     height: 55px;
     object-fit: contain;
@@ -128,7 +132,7 @@ html, body {
     transition: filter 0.4s;
 }
 
-.medalha.conquistada {
+:where(body:is(.paginaPedidos,.paginaMontagem)) .medalha.conquistada {
     filter: none;
 }
 
@@ -141,7 +145,7 @@ html, body {
     background-size: cover;
 }
 
-.backgroundDosPedido {
+:where(body:is(.paginaPedidos,.paginaMontagem)) .backgroundDosPedido {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -152,7 +156,7 @@ html, body {
     background-color: rgba(255, 255, 255, 0);
 }
 
-.pedido {
+:where(body:is(.paginaPedidos,.paginaMontagem)) .pedido {
     width: 90%;
     background-color: white;
     border-radius: 25px;
@@ -162,21 +166,21 @@ html, body {
     margin: 15px 0;
 }
 
-.pedido img {
+:where(body:is(.paginaPedidos,.paginaMontagem)) .pedido img {
     max-height: 80px;
     max-width: 80px;
 }
 
-.cliente {
+:where(body:is(.paginaPedidos,.paginaMontagem)) .cliente {
     display: flex;
     align-items: flex-end;
 }
 
-.cliente h4 {
+:where(body:is(.paginaPedidos,.paginaMontagem)) .cliente h4 {
     margin: 0 0 0 10px;
 }
 
-.pedido a {
+:where(body:is(.paginaPedidos,.paginaMontagem)) .pedido a {
     margin-left: auto;
     background-color: rgb(222, 0, 0);
     border: 3px solid rgb(67, 67, 67);
@@ -532,3 +536,782 @@ html, body {
 }
 
 /* já não é minha parte 👎*/
+
+/* ===== Página inicial ===== */
+body.paginaInicial {
+    margin: 0;
+    min-height: 100vh;
+    background-image: url("imagens/fundo.webp");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+:where(body.paginaInicial) .tela-inicial {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+:where(body.paginaInicial) .logo {
+    width: 500px;
+    height: auto;
+    display: block;
+}
+
+:where(body.paginaInicial) .botoes-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-top: 40px;
+}
+
+:where(body.paginaInicial) .btn {
+    width: 320px;
+    height: 90px;
+    padding: 15px 20px;
+    background-color: #ca1726;
+    border: 4px solid rgb(116, 15, 15);
+    border-radius: 18px;
+    font-size: 35px;
+    font-family: fantasy;
+    cursor: pointer;
+    box-shadow: 0 5px 0 rgba(0, 0, 0, 0.25);
+    transition: all 0.2s ease;
+    text-shadow:
+        2px 2px 0 #8B1E1E,
+        -2px -2px 0 #8B1E1E,
+        2px -2px 0 #8B1E1E,
+        -2px 2px 0 #8B1E1E;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    box-sizing: border-box;
+}
+
+:where(body.paginaInicial) .btn:link, :where(body.paginaInicial) .btn:visited, :where(body.paginaInicial) .btn:hover, :where(body.paginaInicial) .btn:active {
+    color: white;
+    text-decoration: none;
+}
+
+
+/* ===== Escolha de níveis ===== */
+body.paginaNiveis, :where(body.paginaNiveis) * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body.paginaNiveis {
+    
+    margin: 0;
+    min-height: 100vh;
+    background-image: url("imagens/fundo.webp");
+    background-size: cover;
+    background-position: center;
+     background-repeat: no-repeat;
+}
+
+:where(body.paginaNiveis) .tela-inicial {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+:where(body.paginaNiveis) .logo {
+    width: 300px;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+}
+
+:where(body.paginaNiveis) .botoes-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-top: 15px;
+}
+
+:where(body.paginaNiveis) .btn-iniciar {
+    background-color: #ca1726;
+    color: white;
+    opacity: 1;
+    cursor: not-allowed;
+}
+
+
+:where(body.paginaNiveis) .btn {
+    width: 215px;
+    padding: 15px 20px;
+    border: 3px solid;
+    border-color: rgb(116, 15, 15);
+    border-radius: 15px;
+    font-size: 25px;
+    font-family: fantasy;
+    cursor: pointer;
+    box-shadow: 0 5px 0 rgba(0, 0, 0, 0.25);
+    transition: all 0.2s ease;
+    text-shadow:
+        2px 2px 0 #8B1E1E,
+        -2px -2px 0 #8B1E1E,
+        2px -2px 0 #8B1E1E,
+        -2px 2px 0 #8B1E1E;
+        display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    box-sizing: border-box;
+}
+
+:where(body.paginaNiveis) .nivel {
+    width: 600px;
+    background-color: white;
+    border-radius: 20px;
+
+    padding: 20px 30px;
+    margin: 15px auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: Arial, sans-serif;
+}
+
+:where(body.paginaNiveis) .btn:link, :where(body.paginaNiveis) .btn:visited, :where(body.paginaNiveis) .btn:hover, :where(body.paginaNiveis) .btn:active {
+    color: white;
+    text-decoration: none;
+}
+
+/* ===== Tutorial ===== */
+
+
+        body.paginaTutorial, :where(body.paginaTutorial) * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body.paginaTutorial {
+            font-family: Arial, Helvetica, sans-serif;
+            background-image: url("imagens/fundo.webp");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            padding: 30px 15px;
+        }
+
+        :where(body.paginaTutorial) .tela-tutorial {
+            width: 100%;
+            max-width: 950px;
+            margin: auto;
+            background: rgba(255, 248, 235, 0.96);
+            border-radius: 25px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* CABEÇALHO */
+
+        :where(body.paginaTutorial) .cabecalho {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        :where(body.paginaTutorial) .logo {
+            width: 230px;
+            max-width: 100%;
+            margin-bottom: 10px;
+        }
+
+        :where(body.paginaTutorial) .cabecalho h1 {
+            color: #9b3d1b;
+            font-size: 35px;
+            margin-bottom: 8px;
+        }
+
+        :where(body.paginaTutorial) .cabecalho p {
+            color: #75452f;
+            font-size: 18px;
+        }
+
+        /* CARTÕES */
+
+        :where(body.paginaTutorial) .instrucoes {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        :where(body.paginaTutorial) .cartao {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background-color: #fff;
+            border: 2px solid #f0c58c;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        :where(body.paginaTutorial) .numero {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+            width: 50px;
+            height: 50px;
+            background-color: #b94e25;
+            color: white;
+            font-size: 25px;
+            font-weight: bold;
+            border-radius: 50%;
+        }
+
+        :where(body.paginaTutorial) .conteudo h2 {
+            color: #9b3d1b;
+            font-size: 21px;
+            margin-bottom: 7px;
+        }
+
+        :where(body.paginaTutorial) .conteudo p {
+            color: #59483e;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        /* DICAS */
+
+        :where(body.paginaTutorial) .dicas {
+            background-color: #ffe0a8;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        :where(body.paginaTutorial) .dicas h2 {
+            color: #913b1d;
+            margin-bottom: 10px;
+            font-size: 23px;
+        }
+
+        :where(body.paginaTutorial) .dicas p {
+            color: #68412b;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        /* BOTÕES */
+
+        :where(body.paginaTutorial) .botoes-menu {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        :where(body.paginaTutorial) .btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 200px;
+            min-height: 55px;
+            border: none;
+            border-radius: 12px;
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        :where(body.paginaTutorial) .btn-voltar {
+            font-family: fantasy;
+            background-color: #777;
+            text-shadow:
+                2px 2px 0 #444444,
+                -2px -2px 0 #444444,
+                2px -2px 0 #444444,
+                -2px 2px 0 #444444;
+            border: 3px solid #444444;
+        }
+
+        :where(body.paginaTutorial) .btn-jogar {
+            font-family: fantasy;
+            background-color: #ca1726;
+            border: 3px solid rgb(116, 15, 15);
+            text-shadow:
+                2px 2px 0 #8B1E1E,
+                -2px -2px 0 #8B1E1E,
+                2px -2px 0 #8B1E1E,
+                -2px 2px 0 #8B1E1E;
+        }
+
+        :where(body.paginaTutorial) .btn:hover {
+            transform: scale(1.05);
+            filter: brightness(1.1);
+        }
+
+        /* RESPONSIVIDADE */
+
+        @media (max-width: 600px) {
+
+            :where(body.paginaTutorial) .tela-tutorial {
+                padding: 20px 15px;
+            }
+
+            :where(body.paginaTutorial) .cabecalho h1 {
+                font-size: 28px;
+            }
+
+            :where(body.paginaTutorial) .cartao {
+                padding: 15px;
+                gap: 12px;
+            }
+
+            :where(body.paginaTutorial) .numero {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+
+            :where(body.paginaTutorial) .conteudo h2 {
+                font-size: 18px;
+            }
+
+            :where(body.paginaTutorial) .conteudo p {
+                font-size: 14px;
+            }
+
+            :where(body.paginaTutorial) .botoes-menu {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            :where(body.paginaTutorial) .btn {
+                width: 100%;
+                max-width: 250px;
+            }
+        }
+
+    
+
+/* ===== Validação ===== */
+body.paginaValidacao {
+    background-image: url(imagens/fundo_pizzaria.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+:where(body.paginaValidacao) .retry { 
+    background-color: #009D4A;
+    font-size: 20px;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 20px;
+    border: 2px solid #153D1F;
+
+    display: inline-flex;
+    width: 220px;
+    height: 55px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+:where(body.paginaValidacao) .continue {
+    background-color: #941E1E;
+    font-size: 20px;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 20px;
+    border: solid 2px #401802;
+
+    display: inline-flex;
+    width: 220px;
+    height: 55px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+:where(body.paginaValidacao) .botoes {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+:where(body.paginaValidacao) .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}
+
+:where(body.paginaValidacao) .blocos {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+:where(body.paginaValidacao) .certo {
+    background-color: #A6D095;
+    border: 2px solid #7AAE72;
+    border-radius: 10px;
+    width: 190px;
+    height: 150px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
+
+:where(body.paginaValidacao) .errado {
+    background-color: #FFD4D2;
+    border: 2px solid #E0A396;
+    border-radius: 10px;
+    width: 190px;
+    height: 150px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
+
+:where(body.paginaValidacao) .fundo {
+    background-color: #FFE5B6;
+    border: 5px solid #3D1700;
+    border-radius: 10px;
+    padding: 35px;
+}
+
+:where(body.paginaValidacao) .titulo {
+    color: #FFF6C9;
+}
+
+:where(body.paginaValidacao) p {
+    margin: 10px 0;
+}
+
+/* ===== Pontuação ===== */
+body.paginaPontuacao {
+    background-image: url(imagens/fundo_pizzaria.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+:where(body.paginaPontuacao) .lado {
+  flex: 0 0 auto;
+  width: 25%;
+  height: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+}
+
+:where(body.paginaPontuacao) .meio {
+    flex: 0 0 auto;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+:where(body.paginaPontuacao) .continue {
+    background-color: #941E1E;
+    font-size: 20px;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 20px;
+    border: solid 2px #401802;
+
+    display: inline-flex;
+    width: 220px;
+    height: 55px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+:where(body.paginaPontuacao) .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}
+
+:where(body.paginaPontuacao) .blocoTop {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    padding-bottom: 0;
+    background-color: #64AB3A;
+    border-radius: 10px 10px 0 0;
+    width: 335px;
+    border-top: 2px solid black;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+}
+
+:where(body.paginaPontuacao) .blocoBot {
+    border-radius: 0 0 10px 10px;
+    padding: 0 5px 10px 5px;
+    background-color: #C88151;
+    width: 345px;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+}
+
+:where(body.paginaPontuacao) .total {
+    background-color: #242424;
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 0 0 5px 5px;
+}
+
+:where(body.paginaPontuacao) .linha {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #FDF8DA;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+:where(body.paginaPontuacao) .lista {
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px 5px 0 0;
+    background-color: #ffffff;
+}
+
+:where(body.paginaPontuacao) .ponto {
+    border: none;
+    border-top: 2px dashed #ccc;
+}
+
+:where(body.paginaPontuacao) .margin-0 {
+    margin: 0;
+}
+
+/* ===== Fornos ===== */
+/* ESTILOS EXCLUSIVOS DOS 4 FORNOS. Não altera nenhuma outra tela. */
+body.paginaFornos { --cafe:#391604; --cafe-escuro:#240d04; --laranja:#b94c0e; --creme:#ffe4bb; --ouro:#ffba26; }
+body.paginaFornos, :where(body.paginaFornos) * {box-sizing:border-box}
+html:has(body.paginaFornos) {min-height:100%}
+body.paginaFornos {
+    margin:0; min-height:100vh; color:#fff1d5; font-family:Arial,Verdana,sans-serif;
+    background:linear-gradient(180deg,rgba(40,12,3,.74),rgba(37,12,3,.88)),url("imagens/fundo_pizzaria.png") center/cover fixed;
+}
+:where(body.paginaFornos) button, :where(body.paginaFornos) a {font:inherit}
+:where(body.paginaFornos) button {cursor:pointer}
+:where(body.paginaFornos) button:disabled {cursor:not-allowed; opacity:.62}
+:where(body.paginaFornos) a {color:inherit}
+:where(body.paginaFornos) .pagina-fornos {width:min(1400px,96%);margin:auto;padding:16px 0 32px}
+:where(body.paginaFornos) .topo-fornos {text-align:center; position:relative;}
+:where(body.paginaFornos) .topo-fornos p {font-size:clamp(14px,1.6vw,20px);font-weight:700; text-shadow:0 2px 3px #1d0905;margin:10px 0 20px}
+:where(body.paginaFornos) .voltar {position:absolute;left:4px;top:18px;color:#8B3A2B;background:#F5D3B0;border:3px solid #7a3c20;border-radius:12px;padding:10px 13px;text-decoration:none;font-family:Impact,sans-serif;font-size:17px;box-shadow:0 4px 0 #2a1005;z-index:1}
+:where(body.paginaFornos) .voltar:hover, :where(body.paginaFornos) .link-pedido:hover {filter:brightness(1.13)}
+:where(body.paginaFornos) .titulo-placa {
+    display:inline-block;max-width:100%; margin:0 auto;padding:7px 50px 12px;
+    border:6px solid #5c2308;border-radius:22px 24px 24px 22px;
+    background:repeating-linear-gradient(174deg,transparent 0 18px,rgba(86,33,9,.14) 19px 21px,transparent 22px 35px),linear-gradient(180deg,#d88726,#ae4d0f 80%);
+    box-shadow:0 7px 0 #431702,inset 0 4px 1px #f6a540,inset 0 -4px #802c06,0 12px 22px #170902ae;
+}
+:where(body.paginaFornos) .titulo-placa h1 {font-family:Impact,"Arial Black",sans-serif;font-size:clamp(30px,4.5vw,64px);letter-spacing:1px;line-height:1.06;margin:0;color:white;-webkit-text-stroke:1.3px #3c1000;text-shadow:3px 4px 0 #351204,5px 6px 1px #261006;}
+:where(body.paginaFornos) .barra-acoes {display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;border:2px solid #b9672c;background:#3a190acb;box-shadow:0 4px 0 #170800;border-radius:15px;padding:11px 15px;margin:0 3px 15px}
+:where(body.paginaFornos) .resumo-fila {font-weight:700;color:#ffe2ac;}
+:where(body.paginaFornos) .acoes-gerais {display:flex;gap:10px;flex-wrap:wrap}
+:where(body.paginaFornos) .link-pedido, :where(body.paginaFornos) .botao-demo {border:3px solid #740f0f;border-radius:15px;padding:10px 14px;font-family:Impact,"Arial Black",sans-serif;letter-spacing:.4px;text-decoration:none;color:white;background:#ca1726;box-shadow:0 4px 0 #290c02;text-shadow:2px 2px 0 #8B1E1E;font-size:16px}
+:where(body.paginaFornos) .botao-demo {background:#a93221;}
+:where(body.paginaFornos) .mensagem {min-height:18px;margin:0 7px 10px;color:#ffe2a5;font-weight:700;font-size:14px}
+:where(body.paginaFornos) .grade-fornos {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+:where(body.paginaFornos) .forno {min-width:0;overflow:hidden;border:7px solid #6d2a0a;border-radius:23px;background:linear-gradient(150deg,#b65420,#8d310f);box-shadow:0 5px 0 #311106,0 13px 23px #180802ac,inset 0 0 0 3px #d37f35;padding:14px 15px 15px;position:relative}
+:where(body.paginaFornos) .forno::after {content:"";pointer-events:none;position:absolute;inset:5px;border:1px solid #f5ad57a1;border-radius:14px}
+:where(body.paginaFornos) .placa-forno {background:repeating-linear-gradient(174deg,transparent 0 28px,#a24b1724 29px 31px,transparent 32px 50px),linear-gradient(#e99b32,#b9621c);min-height:61px;border-radius:16px;border:4px solid #682806;box-shadow:inset 0 3px #ffc164,inset 0 -3px #8c3c0b,0 4px 0 #421802;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:4px 16px}
+:where(body.paginaFornos) .placa-forno h2 {font-family:Impact,"Arial Black",sans-serif;white-space:nowrap;letter-spacing:1.5px;font-size:clamp(24px,3vw,41px);color:white;-webkit-text-stroke:.8px #441802;text-shadow:2px 3px 0 #481802;margin:0}
+:where(body.paginaFornos) .estado-forno {font-size:11px;letter-spacing:.4px;max-width:50%;text-align:right;border-radius:999px;padding:8px 10px;font-weight:900;color:#fff3d6;background:#5f3119;border:2px solid #7e4e24;box-shadow:inset 0 2px 3px #2b0b04}
+:where(body.paginaFornos) .linha-info {display:flex;gap:14px;align-items:center;justify-content:space-between;margin:13px 0 7px;font-weight:800;text-shadow:1px 2px 2px #311006}
+:where(body.paginaFornos) .nome-pizza {font-size:clamp(13px,1.4vw,18px);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+:where(body.paginaFornos) .tempo {font-family:Impact,"Arial Black",sans-serif;flex-shrink:0;font-size:clamp(23px,2.3vw,32px);letter-spacing:1px;color:#fff7dd}
+:where(body.paginaFornos) .progresso-linha {display:flex;align-items:center;padding:0 5px 0 14px;margin-bottom:9px}
+:where(body.paginaFornos) .relogio {z-index:1;background:#fff3d6;color:#4a250b;border:5px solid #5a270b;box-shadow:0 3px 0 #2c1005;border-radius:100%;width:48px;height:48px;margin-right:-8px;font-size:39px;line-height:35px;font-weight:900;flex-shrink:0}
+:where(body.paginaFornos) .trilho {height:34px;overflow:hidden;border-radius:30px;border:5px solid #71330b;background:#362316;box-shadow:inset 0 4px 7px #140804,0 4px 1px #562207;flex:1}
+:where(body.paginaFornos) .preenchimento {height:100%;width:0%;border-radius:18px;background:linear-gradient(#ffe26a 0%,#ffac10 48%,#ed6b08 100%);box-shadow:inset 0 2px 2px #fff2ab;transition:width .25s linear;position:relative}
+:where(body.paginaFornos) .preenchimento::after {content:"";position:absolute;right:0;top:0;bottom:0;width:20px;background:#ffeb95a8;filter:blur(6px)}
+:where(body.paginaFornos) .janela-forno {border:4px solid #7d370c;position:relative;overflow:hidden;border-radius:12px;background:#3a1004;box-shadow:0 4px 8px #260b05,0 0 0 2px #e79a4a}
+:where(body.paginaFornos) .janela-forno img {display:block;width:100%;height:auto;aspect-ratio:794/387;object-fit:cover;transition:filter .4s}
+:where(body.paginaFornos) .janela-forno::after {content:"";position:absolute;inset:0;pointer-events:none;background:#14090798;transition:background .35s}
+:where(body.paginaFornos) .forno[data-status="assando"] .janela-forno::after {background:radial-gradient(ellipse at 51% 70%,#ff8d1800 17%,#230a0620 70%);animation:brilhar 1.4s ease-in-out infinite alternate}
+:where(body.paginaFornos) .forno[data-status="aguardando"] .janela-forno::after {background:#3b18073b}
+:where(body.paginaFornos) .forno[data-status="pausado"] .janela-forno::after {background:#1409079d}
+:where(body.paginaFornos) .forno[data-status="pronto"] .janela-forno::after {background:#190f0b25}
+@keyframes brilhar {from {opacity:.45} to {opacity:1}}
+:where(body.paginaFornos) .forno[data-status="pronto"] .estado-forno {color:#153c0e;background:#d7ff9d;border-color:#6aa82e}
+:where(body.paginaFornos) .forno[data-status="assando"] .estado-forno {background:#e98116;border-color:#ffb84b;color:#2b1304}
+:where(body.paginaFornos) .forno[data-status="pausado"] .estado-forno {background:#fce7a2;color:#603009;border-color:#ddb95f}
+:where(body.paginaFornos) .comandos {display:flex;gap:10px;align-items:center;justify-content:center;margin-top:14px;min-height:45px}
+:where(body.paginaFornos) .botao-acao, :where(body.paginaFornos) .botao-secundario {border:4px solid #4b0808;box-shadow:2px 4px 5px #1f0806a8;border-radius:50px;padding:10px 16px;color:#fff;text-shadow:2px 2px 2px #333;font-family:Impact,"Arial Black",sans-serif;letter-spacing:.6px;background:#df1717;min-height:46px;font-size:17px}
+:where(body.paginaFornos) .botao-acao {min-width:180px}
+:where(body.paginaFornos) .botao-secundario {font-size:13px;background:#8f3d2b;border-color:#4b2018}
+:where(body.paginaFornos) .botao-acao:not(:disabled):hover, :where(body.paginaFornos) .botao-secundario:hover, :where(body.paginaFornos) .botao-demo:hover {filter:brightness(1.12)}
+:where(body.paginaFornos) .botao-acao:focus-visible, :where(body.paginaFornos) .botao-secundario:focus-visible, :where(body.paginaFornos) .link-pedido:focus-visible, :where(body.paginaFornos) .botao-demo:focus-visible, :where(body.paginaFornos) .voltar:focus-visible {outline:3px solid #fff7b2;outline-offset:3px}
+:where(body.paginaFornos) .botao-secundario[hidden] {display:none}
+:where(body.paginaFornos) .rodape-fornos {font-size:13px;font-weight:700;color:#f5c99b;text-align:center;text-shadow:0 2px 1px #321305;margin:20px 10px 0}
+@media (max-width:880px) {:where(body.paginaFornos) .grade-fornos {grid-template-columns:1fr}:where(body.paginaFornos) .voltar {position:static;display:inline-block;margin-bottom:15px}:where(body.paginaFornos) .topo-fornos {margin-top:0}:where(body.paginaFornos) .titulo-placa {padding:6px 20px 11px}:where(body.paginaFornos) .barra-acoes {justify-content:center;text-align:center}:where(body.paginaFornos) .pagina-fornos {width:min(660px,96%)}}
+@media (max-width:460px) {:where(body.paginaFornos) .forno {padding:9px;border-width:5px}:where(body.paginaFornos) .placa-forno {padding:4px 9px}:where(body.paginaFornos) .placa-forno h2 {font-size:26px}:where(body.paginaFornos) .estado-forno {font-size:10px}:where(body.paginaFornos) .acao-gerais {justify-content:center}:where(body.paginaFornos) .barra-acoes {padding:10px 5px}:where(body.paginaFornos) .link-pedido, :where(body.paginaFornos) .botao-demo {font-size:13px;padding:10px}:where(body.paginaFornos) .relogio {width:40px;height:40px;font-size:31px;line-height:30px}:where(body.paginaFornos) .trilho {height:30px}:where(body.paginaFornos) .comandos {flex-wrap:wrap}:where(body.paginaFornos) .botao-acao {min-width:150px}}
+@media (prefers-reduced-motion:reduce) {:where(body.paginaFornos) .forno[data-status="assando"] .janela-forno::after {animation:none}:where(body.paginaFornos) .preenchimento, :where(body.paginaFornos) .janela-forno img, :where(body.paginaFornos) .janela-forno::after {transition:none}}
+
+
+/* ===== Complementos funcionais: pedidos e montagem (sem alterar a identidade das telas) ===== */
+body.paginaPedidos { min-height:100vh; background-attachment:fixed; background-position:center; font-family:Arial, sans-serif; }
+.paginaPedidos #mensagemPedidos { margin:0; padding:10px 14px; background:#3d1700cf; color:#fff5db; text-align:center; font-weight:700; }
+.paginaPedidos .backgroundDosPedido { width:min(740px,94vw); height:auto; min-height:40vh; margin:80px auto 45px; align-items:stretch; justify-content:flex-start; }
+.paginaPedidos .resumoPedidos { padding:16px 24px; background:#ffe8cbe8; color:#3d1700; border:3px solid #7d3a1f; border-radius:20px; box-shadow:0 4px 7px #1c090688; text-align:center; }
+.paginaPedidos .resumoPedidos h2 { font-family:Impact,Arial,sans-serif; letter-spacing:1px; margin:0 0 6px; }
+.paginaPedidos .resumoPedidos p { margin:0 0 10px; }
+.paginaPedidos .atalhosPedidos { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; }
+.paginaPedidos .atalhosPedidos a,.paginaPedidos .verResultadoPedidos { color:white; background:#8b3823; border-radius:12px; padding:9px 15px; font-weight:700; text-decoration:none; }
+.paginaPedidos .pedido { width:auto; min-height:90px; gap:12px; box-shadow:0 4px 8px #32150955; }
+.paginaPedidos .pedido a { text-align:center; white-space:nowrap; font-size:18px; }
+.paginaPedidos .pedidoConcluido { opacity:.82; }
+.paginaPedidos .pedidoConcluido a { background:#378f53; }
+.paginaPedidos .nomePizzaPedido { margin:6px 0 0 10px; font-size:14px; color:#674326; }
+.paginaPedidos .verResultadoPedidos { display:block; text-align:center; margin:10px 0; background:#236e3b; }
+
+.paginaMontagem .instrucoesMontagem { margin:0 0 8px; font-size:14px; color:#52260f; text-align:center; font-weight:700; }
+.paginaMontagem .areaPizza { display:flex; flex-direction:column; align-items:center; padding:16px 14px 90px; overflow:auto; }
+.paginaMontagem #pilhaAlgoritmo { display:flex; flex-direction:column; width:min(100%,350px); min-height:56px; gap:4px; }
+.paginaMontagem .pilhaVazia { margin:18px 6px; padding:18px; text-align:center; border:2px dashed #b68255; border-radius:10px; color:#75452f; font-weight:700; }
+.paginaMontagem .pilhaVazia[hidden] { display:none; }
+.paginaMontagem .avisoMontagem { margin:12px; font-size:12px; color:#714429; }
+.paginaMontagem .areaPizza.areaRecebendo { outline:4px dashed #d28d22; outline-offset:-8px; }
+.paginaMontagem #pilhaAlgoritmo .ingredienteMontado { position:relative; left:auto; top:auto; width:100%; height:auto; min-height:46px; padding:5px 8px 5px 14px; margin:0; justify-content:space-between; gap:8px; touch-action:pan-y; border:2px solid #522908; border-radius:7px; box-shadow:0 3px 0 #5b290d; font-size:17px; cursor:move; }
+.paginaMontagem #pilhaAlgoritmo .ingredienteMontado::before { content:'▤'; position:absolute; left:3px; top:50%; transform:translateY(-50%); color:#fff8; font-size:12px; }
+.paginaMontagem #pilhaAlgoritmo .ingredienteMontado.blocoArrastando { opacity:.45; }
+.paginaMontagem .blocoRotulo { padding-left:8px; }
+.paginaMontagem .acoesBloco { display:flex; gap:3px; flex-shrink:0; }
+.paginaMontagem .acaoBloco { color:#50200e; background:#fff4d9; border:1px solid #7b4b26; width:26px; height:28px; border-radius:5px; cursor:pointer; font-size:17px; line-height:1; }
+.paginaMontagem .acaoBloco:disabled { opacity:.35; cursor:not-allowed; }
+.paginaMontagem .blocoPizza,.paginaMontagem #tempoFornoBloco { touch-action:manipulation; cursor:grab; }
+.paginaMontagem .blocoPizza:focus-visible,.paginaMontagem #tempoFornoBloco:focus-visible,.paginaMontagem .acaoBloco:focus-visible { outline:3px solid #dfb441; outline-offset:2px; }
+.paginaMontagem .painelIngredientes { max-height:76vh; overflow-y:auto; }
+.paginaMontagem .painelPedido { height:auto; min-height:350px; border-radius:15px; background:#fff1d9dd; border:2px solid #7f4e29; box-shadow:0 5px 10px #2b110555; padding:10px; }
+.paginaMontagem .pedidoReceita { position:static; width:auto; margin:0; }
+.paginaMontagem .itemPedido { min-height:36px; height:auto; padding:8px 9px; font-size:16px; }
+.paginaMontagem .botaoVerificar:disabled { opacity:.55; cursor:not-allowed; }
+.paginaMontagem .medio { color:#ffd463; }
+.paginaMontagem .dificil { color:#fb8787; }
+
+.paginaValidacao .resumoValidacao { color:#fff6cf; font-weight:700; text-shadow:0 2px 2px #3c1302; text-align:center; }
+.paginaValidacao .iconeValidacao { font-size:44px; line-height:1.2; font-weight:900; }
+.paginaValidacao .certo .iconeValidacao { color:#18822e; }
+.paginaValidacao .errado .iconeValidacao { color:#c4342c; }
+.paginaValidacao .fundo { max-width:94vw; }
+.paginaValidacao .certo,.paginaValidacao .errado { text-align:center; font-size:14px; }
+.paginaValidacao .botoes { flex-wrap:wrap; justify-content:center; }
+
+.paginaPontuacao .subtituloPontuacao { margin:4px 0 8px; text-align:center; font-weight:700; font-size:13px; }
+.paginaPontuacao .conquistasPontuacao { width:min(550px,96vw); margin-top:14px; border:2px solid #753b1e; border-radius:12px; padding:12px; background:#ffe2b7; color:#4b250f; text-align:center; }
+.paginaPontuacao .listaConquistas { display:flex; flex-wrap:wrap; justify-content:center; gap:7px; margin-top:8px; }
+.paginaPontuacao .conquistaItem { border-radius:999px; background:#cbb9a2; color:#5c4d41; padding:6px 9px; font-size:12px; }
+.paginaPontuacao .conquistaItem.desbloqueada { background:#f9bc4b; color:#432109; }
+.paginaPontuacao .blocoTop { width:min(500px,95vw); box-sizing:border-box; }
+.paginaPontuacao .blocoBot { width:min(510px,97vw); box-sizing:border-box; }
+.paginaPontuacao .linha { gap:10px; }
+.paginaPontuacao .linha p:last-child { font-size:13px; }
+.paginaPontuacao .blocoTop h1 { text-align:center; }
+
+@media (max-width:1200px) {
+  .paginaMontagem .cabeca { padding:0 18px; }
+  .paginaMontagem .esquerda { gap:8px; }
+  .paginaMontagem .direita { gap:8px; }
+  .paginaMontagem .barra { width:min(35vw,350px); }
+  .paginaMontagem .painelIngredientes { width:215px; }
+  .paginaMontagem .blocoPizza { width:160px; }
+  .paginaMontagem .tempoForno { width:185px; font-size:15px; }
+  .paginaMontagem .painelPedido { right:8px; width:270px; }
+  .paginaMontagem .areaMontagem { width:min(480px,42vw); }
+  .paginaMontagem .itemPedido { font-size:14px; }
+}
+@media (max-width:950px) {
+  body.paginaMontagem { flex-direction:column; justify-content:flex-start; gap:18px; padding:160px 12px 60px; box-sizing:border-box; }
+  .paginaMontagem [data-site-header] { position:absolute; }
+  .paginaMontagem .cabeca { min-height:120px; height:auto; padding:10px 12px; grid-template-columns:1fr auto; gap:10px; }
+  .paginaMontagem .centro { grid-column:1 / -1; grid-row:2; }
+  .paginaMontagem .direita { grid-column:2; grid-row:1; }
+  .paginaMontagem .esquerda { grid-column:1; grid-row:1; }
+  .paginaMontagem #logo { height:62px; }
+  .paginaMontagem #voltar,.paginaMontagem #dicas { width:45px; height:45px; }
+  .paginaMontagem .medalha { width:30px; height:30px; }
+  .paginaMontagem #medalhas { padding:6px; gap:4px; }
+  .paginaMontagem .barra { width:min(75vw,380px); height:14px; }
+  .paginaMontagem .nivel { font-size:18px; }
+  .paginaMontagem .painelPedido,.paginaMontagem .painelIngredientes { position:static; transform:none; width:min(510px,98vw); max-height:none; border-radius:14px; }
+  .paginaMontagem .painelPedido { order:1; min-height:0; }
+  .paginaMontagem .painelIngredientes { order:2; }
+  .paginaMontagem .areaMontagem { order:3; width:min(510px,98vw); height:480px; margin-bottom:65px; }
+  .paginaMontagem .bandejaIngredientes { display:flex; flex-wrap:wrap; gap:7px; padding:8px; }
+  .paginaMontagem .blocoPizza { width:calc(50% - 7px); margin:0; font-size:15px; }
+  .paginaMontagem .tempoForno { margin:10px auto 0; }
+}
+@media (max-width:700px) {
+  .paginaNiveis .nivel { width:min(95vw,600px); gap:10px; }
+  .paginaNiveis .logo { max-width:70vw; }
+  .paginaNiveis .btn { width:125px; font-size:20px; }
+  .paginaPedidos .backgroundDosPedido { margin-top:25px; }
+  .paginaPedidos .pedido { padding:12px; flex-wrap:wrap; }
+  .paginaPedidos .pedido a { margin-left:auto; font-size:14px; padding:8px 10px; }
+  .paginaValidacao .blocos { gap:6px; }
+  .paginaValidacao .certo,.paginaValidacao .errado { width:140px; }
+  .paginaValidacao .fundo { padding:12px; }
+  .paginaPontuacao .container { height:auto; min-height:100vh; flex-direction:column; gap:12px; padding:25px 0; }
+  .paginaPontuacao .meio { width:100%; }
+  .paginaPontuacao .lado { width:100%; }
+  .paginaPontuacao .lado:empty { display:none; }
+  .paginaPontuacao .blocoTop h1 { font-size:24px; }
+  .paginaInicial .logo { max-width:90vw; }
+  .paginaInicial .btn { width:min(320px,85vw); }
+}
+
+.paginaPontuacao .historicoPontuacao { width:min(550px,96vw); margin:10px 0 0; border:2px solid #753b1e; border-radius:12px; padding:12px; background:#fff3df; color:#4b250f; text-align:center; }
+.paginaPontuacao .historicoPontuacao p { margin:5px 0; font-size:12px; }
+
+/* Progressão de dificuldade: ajustes localizados sem mudar o design dos cartões. */
+.paginaNiveis .navegacao-niveis {position:absolute;top:16px;left:16px;z-index:2;}
+.paginaNiveis .botao-voltar-niveis {display:inline-block;background:#8b3823;border:3px solid #692614;color:#fff;padding:10px 17px;border-radius:12px;font-family:Arial,sans-serif;font-weight:700;text-decoration:none;box-shadow:0 4px 0 #3a140a;}
+.paginaNiveis .botao-voltar-niveis:hover {filter:brightness(1.12);}
+.paginaNiveis .nivel:not(.nivel-bloqueado) .btn-iniciar {cursor:pointer;}
+.paginaNiveis .nivel-bloqueado {opacity:.7;}
+.paginaNiveis .nivel-bloqueado .btn-iniciar {background:#777;border-color:#555;cursor:not-allowed;opacity:.85;font-size:19px;user-select:none;}
+.paginaNiveis .nivel-bloqueado .btn-iniciar:hover {transform:none;}
+
+/* Painel pedagógico de desempenho: mantém o estilo original da página. */
+.paginaPontuacao .historicoPontuacao .mediaDesempenho {font-weight:700;font-size:14px;margin:9px 0;}
+.paginaPontuacao .linhaDesempenho {display:flex;justify-content:space-between;gap:14px;text-align:left;border-bottom:1px solid #d8ad84;padding:6px 4px;font-size:13px;}
+.paginaPontuacao .linhaDesempenho strong {white-space:nowrap;}
+.paginaPontuacao .historicoPontuacao > strong:not(:first-child) {display:block;margin-top:14px;}
+.paginaPontuacao .historicoPontuacao .dicaDesempenho {font-size:13px;line-height:1.4;text-align:left;margin:8px 4px;}
+.paginaPontuacao .historicoPontuacao .notaDesempenho {font-size:11px;line-height:1.4;margin-top:12px;opacity:.8;}

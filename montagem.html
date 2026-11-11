@@ -8,7 +8,35 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="paginaMontagem">
-    <div data-site-header></div>
+    <div data-site-header>
+    <nav class="cabeca">
+        <div class="esquerda">
+            <a href="pedidos.html"><div id="voltar"><span>&#10094;</span></div></a>
+            <img id="logo" src="imagens/Logo.png" alt="Algoritmo na Massa">
+        </div>
+    
+        <div class="centro">
+            <h2 class="nivel">Nível <span class="facil" data-nivel-atual>FÁCIL</span>: <span data-progresso-texto>0/3 PIZZAS</span></h2>
+            <div class="barra">
+                <div class="barra-preenchimento"></div>
+            </div>
+        </div>
+    
+        <div class="direita">
+            <div class="bloco-dicas">
+                <div id="dicas">
+                    <img src="imagens/lampadaplaceholder.png" alt="Dicas">
+                </div>
+                <span>Dicas</span>
+            </div>
+                <div id="medalhas">
+                    <img class="medalha" data-conquista-header="primeiro" src="imagens/medalhaplaceholder.png" alt="Medalha 1">
+                    <img class="medalha" data-conquista-header="perfeito" src="imagens/medalhaplaceholder.png" alt="Medalha 2">
+                    <img class="medalha" data-conquista-header="nivelCompleto" src="imagens/medalhaplaceholder.png" alt="Medalha 3">
+                </div>
+        </div>
+    </nav>
+    </div>
 
     <div class="painelIngredientes">
         <div class="bandejaIngredientes" id="bandejaIngredientes"></div>
@@ -27,7 +55,6 @@
         <div class="pedidoReceita" id="pedidoReceita"></div>
     </div>
 
-    <script src="header-loader.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
